@@ -1,5 +1,5 @@
-# Welcome to GitHub Desktop!
+# Welcome to AraOps Origins!
 
-This is your README. READMEs are where you can communicate what your project is and how to use it.
+This is the begining of a journey that will expand our tech knowledge.
 
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+READMEs and more exciting docs are about to come and here you can communicate, or just collab on this path where we can leverage our tech stack. "an open mind is where you find adventure".
