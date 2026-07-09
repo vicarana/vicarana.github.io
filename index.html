@@ -1,401 +1,481 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="space">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="description" content="Victor Arana — SRE Lead keeping 400+ stores running. Building AI-ops tools. Open to EU relocation and senior remote roles."/>
-<meta property="og:title" content="Victor Arana — SRE / Platform / AI"/>
-<meta property="og:description" content="I kept 400+ retail stores running at 99.9%. Now I'm building the AI layer on top."/>
+<meta name="description" content="Victor Arana — SRE Lead. 400+ stores. AI-ops builder. Open to EU relocation."/>
+<meta property="og:title" content="Victor Arana — SRE · Platform · AI"/>
 <meta property="og:url" content="https://vicarana.github.io"/>
 <title>Victor Arana — SRE · Platform · AI</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  html{scroll-behavior:smooth}
-  /* Gradient text */
-  .gt{background:linear-gradient(90deg,#38bdf8 0%,#818cf8 50%,#34d399 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    display:inline-block}
-  /* Animated underline on links */
-  .ul-hover{position:relative}
-  .ul-hover::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;
-    background:#38bdf8;transition:width .25s}
-  .ul-hover:hover::after{width:100%}
-  /* Card */
-  .card{transition:border-color .2s,transform .2s,box-shadow .2s}
-  .card:hover{border-color:#38bdf8 !important;transform:translateY(-3px);
-    box-shadow:0 8px 30px rgba(56,189,248,.12)}
-  /* Skill pill */
-  .pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.7rem;
-    font-weight:700;background:#0f172a;border:1px solid #1e3a5f;color:#93c5fd;margin:2px}
-  /* Available badge */
-  .avail{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;
-    border-radius:999px;border:1px solid #166534;background:#052e1a;
-    color:#86efac;font-size:.75rem;font-weight:700;letter-spacing:.03em}
-  .avail .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;
-    animation:pulse 1.5s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  /* Timeline */
-  .tl-item{position:relative;padding-left:20px}
-  .tl-item::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;
-    border-radius:50%;background:#38bdf8;border:2px solid #0f172a}
-  .tl-item::after{content:'';position:absolute;left:3px;top:14px;width:2px;
-    height:calc(100% + 8px);background:#1e3a5f}
-  .tl-item:last-child::after{display:none}
-  /* Package popular badge */
-  .pkg-tag{position:absolute;top:-11px;left:16px;background:#38bdf8;color:#0f172a;
-    font-size:.65rem;font-weight:800;padding:2px 10px;border-radius:999px}
-  /* Section label */
-  .sec-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;color:#475569;
-    text-transform:uppercase;margin-bottom:12px}
-  nav a{transition:color .15s}
+/* ── THEME TOKENS ─────────────────────────────────────────── */
+:root,[data-theme=space]{
+  --bg:#07090f;--sur:#0d1117;--card:#111827;--card2:#161f2e;
+  --border:#1e293b;--border2:#2d3f55;
+  --ink:#e2e8f0;--dim:#64748b;--muted:#334155;
+  --a1:#38bdf8;--a2:#818cf8;--a3:#34d399;
+  --hi:#22c55e;--hi-bg:#052e16;--hi-bd:#166534;
+  --grad:linear-gradient(90deg,#38bdf8,#818cf8,#34d399);
+  --glow:rgba(56,189,248,.12);
+  --tl-dot:#38bdf8;--tl-line:#1e293b;
+  --sec-lbl:#475569;--pkg-bg:#38bdf8;--pkg-ink:#07090f;
+}
+[data-theme=samurai]{
+  --bg:#08050a;--sur:#100b0d;--card:#160e10;--card2:#1e1214;
+  --border:#3d1a1e;--border2:#5c2428;
+  --ink:#f0e6d3;--dim:#9b7b6a;--muted:#4a2d2a;
+  --a1:#c9a227;--a2:#d4522a;--a3:#e8c870;
+  --hi:#c9a227;--hi-bg:#1a1208;--hi-bd:#7a5c10;
+  --grad:linear-gradient(90deg,#c9a227,#d4522a,#e8c870);
+  --glow:rgba(201,162,39,.12);
+  --tl-dot:#c9a227;--tl-line:#3d1a1e;
+  --sec-lbl:#7a5040;--pkg-bg:#c9a227;--pkg-ink:#08050a;
+}
+[data-theme=ai]{
+  --bg:#04020d;--sur:#08041a;--card:#0d071f;--card2:#120a28;
+  --border:#2d1f5e;--border2:#4a35a0;
+  --ink:#e0d7ff;--dim:#7c6ab8;--muted:#2d1f5e;
+  --a1:#06b6d4;--a2:#7c3aed;--a3:#10b981;
+  --hi:#06b6d4;--hi-bg:#041018;--hi-bd:#0e4a56;
+  --grad:linear-gradient(90deg,#06b6d4,#7c3aed,#10b981);
+  --glow:rgba(6,182,212,.15);
+  --tl-dot:#7c3aed;--tl-line:#2d1f5e;
+  --sec-lbl:#4a35a0;--pkg-bg:#7c3aed;--pkg-ink:#e0d7ff;
+}
+
+/* ── RESET + BASE ─────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  line-height:1.6;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* ── LAYOUT ───────────────────────────────────────────────── */
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-bio{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+@media(max-width:640px){
+  .grid2,.grid3,.grid4,.grid-bio{grid-template-columns:1fr}
+  .span2{grid-column:span 1!important}
+}
+@media(min-width:641px) and (max-width:900px){
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .grid3{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── NAV ──────────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;max-width:1000px;margin:0 auto}
+.logo{font-weight:900;font-size:1.1rem;letter-spacing:-.03em;color:var(--ink)}
+.logo span{color:var(--a1)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:.85rem;color:var(--dim);font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--a1);transition:width .25s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-btns{display:flex;gap:8px;align-items:center}
+.nav-btns a{font-size:.8rem;font-weight:700;color:var(--dim);transition:color .2s}
+.nav-btns a:hover{color:var(--ink)}
+.btn-sm{border:1px solid var(--border2);border-radius:6px;padding:4px 10px;
+  font-size:.75rem;font-weight:800;background:transparent;color:var(--dim);
+  cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-sm:hover{background:var(--card);color:var(--ink)}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero{position:relative;overflow:hidden;text-align:center;padding:100px 20px 80px}
+.glow1,.glow2{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);opacity:.15}
+.glow1{width:400px;height:400px;top:-80px;left:15%;background:var(--a1)}
+.glow2{width:280px;height:280px;bottom:0;right:20%;background:var(--a2)}
+.avail{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;
+  border-radius:999px;border:1px solid var(--hi-bd);background:var(--hi-bg);
+  color:var(--hi);font-size:.75rem;font-weight:800;letter-spacing:.04em;margin-bottom:24px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--hi);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-name{font-size:clamp(3rem,9vw,5.5rem);font-weight:900;line-height:1;
+  letter-spacing:-.04em;margin-bottom:20px;background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.hero-sub{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--ink);
+  margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-p{font-size:.95rem;color:var(--dim);max-width:600px;margin:0 auto 36px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:24px}
+.btn-pri{background:var(--a1);color:var(--bg);font-weight:900;font-size:.85rem;
+  padding:13px 28px;border-radius:10px;border:none;cursor:pointer;transition:opacity .2s;font-family:inherit}
+.btn-pri:hover{opacity:.85}
+.btn-sec{border:1px solid var(--border2);color:var(--dim);font-weight:700;font-size:.85rem;
+  padding:13px 28px;border-radius:10px;background:transparent;cursor:pointer;
+  transition:all .2s;font-family:inherit}
+.btn-sec:hover{border-color:var(--a1);color:var(--a1)}
+.hero-foot{font-size:.7rem;color:var(--muted)}
+
+/* ── IMPACT ───────────────────────────────────────────────── */
+.impact{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--sur) 50%,transparent);padding:56px 0}
+.sec-lbl{font-size:.65rem;font-weight:800;letter-spacing:.14em;color:var(--sec-lbl);
+  text-transform:uppercase;margin-bottom:14px;text-align:center}
+.stat-n{font-size:2.5rem;font-weight:900;line-height:1;margin-bottom:6px}
+.stat-l{font-size:.8rem;color:var(--dim)}
+.stat-box{text-align:center;padding:16px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:32px}
+.pill{display:inline-block;padding:4px 14px;border-radius:999px;font-size:.72rem;
+  font-weight:700;background:var(--card);border:1px solid var(--border2);color:var(--a1)}
+
+/* ── BIO + TIMELINE ───────────────────────────────────────── */
+.bio-section{padding:64px 0}
+.bio-p{color:var(--dim);line-height:1.8;margin-bottom:16px;font-size:.95rem}
+.tl-wrap{display:flex;flex-direction:column;gap:24px}
+.tl-item{position:relative;padding-left:22px}
+.tl-item::before{content:'';position:absolute;left:0;top:7px;width:9px;height:9px;
+  border-radius:50%;background:var(--tl-dot);border:2px solid var(--bg)}
+.tl-item::after{content:'';position:absolute;left:4px;top:16px;width:2px;
+  height:calc(100% + 16px);background:var(--tl-line)}
+.tl-item:last-child::after{display:none}
+.tl-role{font-weight:800;color:var(--ink);font-size:.95rem}
+.tl-date{font-size:.72rem;font-weight:700;color:var(--a1);margin:3px 0 6px}
+.tl-desc{font-size:.82rem;color:var(--dim);line-height:1.6}
+
+/* ── CARDS (projects + services) ─────────────────────────── */
+.cards-section{background:color-mix(in srgb,var(--sur) 40%,transparent);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0}
+.card-el{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:24px;display:flex;flex-direction:column;
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.card-el:hover{border-color:var(--a1);transform:translateY(-3px);box-shadow:0 10px 40px var(--glow)}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.badge{font-size:.65rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;border:1px solid currentColor;opacity:.9}
+.badge-sky{color:#38bdf8;border-color:#1e3a5f;background:#051828}
+.badge-grn{color:#34d399;border-color:#065f46;background:#022a20}
+.badge-amb{color:#fbbf24;border-color:#78350f;background:#1a0e02}
+.badge-vio{color:#a78bfa;border-color:#4c1d95;background:#13082a}
+.card-repo{font-size:.7rem;color:var(--muted)}
+.card-h{font-weight:900;font-size:1rem;color:var(--ink);margin-bottom:8px}
+.card-p{font-size:.82rem;color:var(--dim);line-height:1.6;flex:1;margin-bottom:16px}
+.card-pills{display:flex;flex-wrap:wrap;gap:4px}
+.svc-section{padding:64px 0}
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:22px;display:flex;flex-direction:column;position:relative}
+.svc-popular::before{content:attr(data-lbl);position:absolute;top:-12px;left:18px;
+  background:var(--pkg-bg);color:var(--pkg-ink);font-size:.65rem;font-weight:900;
+  padding:3px 12px;border-radius:999px;letter-spacing:.06em}
+.svc-card.svc-popular{border-color:var(--a1)}
+.svc-h{font-weight:900;color:var(--a1);font-size:.95rem;margin-bottom:3px}
+.svc-meta{font-size:.7rem;color:var(--muted);margin-bottom:10px}
+.svc-p{font-size:.82rem;color:var(--dim);flex:1;margin-bottom:16px;line-height:1.5}
+.svc-price{font-size:1.4rem;font-weight:900;color:var(--ink)}
+.svc-price span{font-size:.8rem;font-weight:400;color:var(--muted)}
+.span2{grid-column:span 2}
+
+/* ── CONTACT ──────────────────────────────────────────────── */
+.contact{background:color-mix(in srgb,var(--sur) 40%,transparent);
+  border-top:1px solid var(--border);padding:80px 0;text-align:center}
+.contact-h{font-size:2rem;font-weight:900;margin-bottom:12px}
+.contact-p{font-size:.9rem;color:var(--dim);max-width:480px;margin:0 auto 8px}
+.contact-foot{font-size:.72rem;color:var(--muted);margin-bottom:36px}
+.btn-email{background:var(--a1);color:var(--bg);font-weight:900;
+  padding:13px 24px;border-radius:10px;font-size:.85rem;transition:opacity .2s}
+.btn-email:hover{opacity:.85}
+.btn-outline{border:1px solid var(--border2);font-weight:700;
+  padding:13px 24px;border-radius:10px;font-size:.85rem;color:var(--dim);
+  transition:all .2s}
+.btn-outline:hover{border-color:var(--a1);color:var(--a1)}
+.contact-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer{border-top:1px solid var(--border);text-align:center;padding:28px 20px;
+  font-size:.72rem;color:var(--muted)}
+footer a:hover{color:var(--a1)}
+
+/* ── SECTION HEADINGS ─────────────────────────────────────── */
+.sec-h{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;text-align:center;margin-bottom:8px}
+.sec-sub{font-size:.85rem;color:var(--dim);text-align:center;margin-bottom:40px}
+
+/* ── THEME INDICATOR (samurai divider) ───────────────────── */
+[data-theme=samurai] .hero::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--a1),transparent)}
+[data-theme=samurai] .sec-lbl{letter-spacing:.2em}
+[data-theme=ai] .pill{font-family:'Courier New',monospace;letter-spacing:.05em}
+[data-theme=ai] .logo{font-family:'Courier New',monospace}
 </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased leading-relaxed">
+<body>
 
-<!-- NAV -->
-<header class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60">
-  <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 py-3 gap-4">
-    <span class="font-black tracking-tight text-white text-lg">ara<span class="text-sky-400">ops</span></span>
-    <div class="hidden sm:flex items-center gap-6 text-sm text-slate-400">
-      <a href="#impact"   class="ul-hover hover:text-white" data-es="Impacto"   data-en="Impact">Impacto</a>
-      <a href="#projects" class="ul-hover hover:text-white" data-es="Proyectos" data-en="Projects">Proyectos</a>
-      <a href="#services" class="ul-hover hover:text-white" data-es="Servicios" data-en="Services">Servicios</a>
-      <a href="#contact"  class="ul-hover hover:text-white" data-es="Contacto"  data-en="Contact">Contacto</a>
+<header class="nav">
+  <div class="nav-inner">
+    <span class="logo">ara<span>ops</span></span>
+    <nav class="nav-links">
+      <a href="#impact"   data-es="Impacto"   data-en="Impact">Impacto</a>
+      <a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a>
+      <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
+      <a href="#contact"  data-es="Contacto"  data-en="Contact">Contacto</a>
+    </nav>
+    <div class="nav-btns">
+      <a href="https://github.com/vicarana" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn-sm" id="themeBtn" aria-label="Change theme" title="Change theme">Samurai</button>
+      <button class="btn-sm" id="langBtn"  aria-label="Switch language">EN</button>
     </div>
-    <div class="flex items-center gap-3">
-      <a href="https://github.com/vicarana" target="_blank" rel="noopener"
-         class="text-slate-500 hover:text-white transition text-sm font-semibold">GitHub</a>
-      <button id="langBtn"
-        class="rounded-md border border-slate-700 px-3 py-1 text-xs font-bold hover:bg-slate-800 transition focus:outline-none focus:ring-2 focus:ring-sky-400"
-        aria-label="Switch language">EN</button>
-    </div>
-  </nav>
+  </div>
 </header>
 
-<!-- HERO -->
-<section class="relative overflow-hidden">
-  <!-- Ambient glow -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10"
-         style="background:radial-gradient(circle,#38bdf8,transparent 70%)"></div>
-    <div class="absolute bottom-0 right-1/4 w-64 h-64 rounded-full opacity-8"
-         style="background:radial-gradient(circle,#818cf8,transparent 70%)"></div>
-  </div>
-  <div class="relative max-w-5xl mx-auto px-5 pt-28 pb-24 text-center">
-    <div class="mb-6">
-      <span class="avail">
-        <span class="dot"></span>
-        <span data-es="Disponible — EU relocation · Remote senior" data-en="Available — EU relocation · Remote senior">Disponible — EU relocation · Remote senior</span>
-      </span>
+<section class="hero">
+  <div class="glow1"></div><div class="glow2"></div>
+  <div style="position:relative">
+    <div class="avail">
+      <span class="dot"></span>
+      <span data-es="Disponible — EU relocation · Remote senior" data-en="Available — EU relocation · Remote senior">Disponible — EU relocation · Remote senior</span>
     </div>
-    <h1 class="text-5xl sm:text-7xl font-black leading-[1.05] tracking-tight mb-6">
-      <span class="gt">Victor Arana</span>
-    </h1>
-    <p class="text-2xl sm:text-3xl font-bold text-white mb-4"
+    <h1 class="hero-name">Victor Arana</h1>
+    <p class="hero-sub"
        data-es="Manten 400+ tiendas funcionando. Construye la capa de IA encima."
        data-en="Kept 400+ stores running. Now building the AI layer on top.">
-       Manten 400+ tiendas funcionando. Construye la capa de IA encima.
+      Manten 400+ tiendas funcionando. Construye la capa de IA encima.
     </p>
-    <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10"
-       data-es="SRE Lead con 10+ anos en sistemas criticos a escala retail. Hoy construyo herramientas de AI-ops en abierto. Busco mi proximo rol senior en Europa o remote."
-       data-en="SRE Lead with 10+ years in critical retail-scale systems. Now building AI-ops tools in the open. Looking for my next senior role in Europe or remote.">
-       SRE Lead con 10+ anos en sistemas criticos a escala retail. Hoy construyo herramientas de AI-ops en abierto.
+    <p class="hero-p"
+       data-es="SRE Lead · 10+ anos en sistemas criticos a escala retail · AI-ops builder · Buscando rol Staff/Senior en Europa o remote."
+       data-en="SRE Lead · 10+ years in critical retail-scale systems · AI-ops builder · Targeting Staff/Senior roles in Europe or remote.">
+      SRE Lead · 10+ anos en sistemas criticos a escala retail · AI-ops builder.
     </p>
-    <div class="flex flex-wrap gap-3 justify-center">
-      <a href="#projects"
-         class="rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-7 py-3.5 transition text-sm"
-         data-es="Ver mi trabajo" data-en="See my work">Ver mi trabajo</a>
-      <a href="#contact"
-         class="rounded-lg border border-slate-600 hover:border-sky-400 hover:text-sky-400 font-bold px-7 py-3.5 transition text-sm"
-         data-es="Hablemos" data-en="Let's talk">Hablemos</a>
+    <div class="cta-row">
+      <a href="#projects" class="btn-pri" data-es="Ver mi trabajo" data-en="See my work">Ver mi trabajo</a>
+      <a href="#contact"  class="btn-sec" data-es="Hablemos"       data-en="Let's talk">Hablemos</a>
     </div>
-    <!-- Timezone signal for EU -->
-    <p class="text-xs text-slate-600 mt-8"
-       data-es="UTC-4 (3h de diferencia con Europa Central) · Ingles profesional · Espanol nativo"
-       data-en="UTC-4 (3h from Central Europe) · Professional English · Native Spanish">
-       UTC-4 · 3h offset from EU · Professional English · Native Spanish
-    </p>
+    <p class="hero-foot">UTC-4 · 3h from EU · Professional English · Native Spanish</p>
   </div>
 </section>
 
-<!-- IMPACT NUMBERS -->
-<section id="impact" class="border-y border-slate-800/60 bg-slate-900/30">
-  <div class="max-w-5xl mx-auto px-5 py-14">
-    <p class="sec-label text-center"
-       data-es="Lo que he entregado" data-en="What I've delivered">Lo que he entregado</p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-      <div class="p-4">
-        <p class="text-4xl font-black text-sky-400">400+</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="tiendas operadas sin caidas" data-en="stores operated without outages">tiendas operadas sin caidas</p>
+<section class="impact" id="impact">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Lo que he entregado" data-en="What I've delivered">Lo que he entregado</p>
+    <div class="grid4">
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a1)">400+</div>
+        <div class="stat-l" data-es="tiendas operadas sin caidas" data-en="stores without outages">tiendas operadas sin caidas</div>
       </div>
-      <div class="p-4">
-        <p class="text-4xl font-black text-violet-400">23</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="dominios de infra mapeados" data-en="infrastructure domains mapped">dominios de infra mapeados</p>
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a2)">23</div>
+        <div class="stat-l" data-es="dominios de infra mapeados" data-en="infra domains mapped">dominios de infra mapeados</div>
       </div>
-      <div class="p-4">
-        <p class="text-4xl font-black text-emerald-400">3</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="agentes IA en produccion" data-en="AI agents in production">agentes IA en produccion</p>
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a3)">3</div>
+        <div class="stat-l" data-es="agentes IA en produccion" data-en="AI agents in production">agentes IA en produccion</div>
       </div>
-      <div class="p-4">
-        <p class="text-4xl font-black text-amber-400">10+</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="anos en sistemas criticos" data-en="years in critical systems">anos en sistemas criticos</p>
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a1)">10+</div>
+        <div class="stat-l" data-es="anos en sistemas criticos" data-en="years in critical systems">anos en sistemas criticos</div>
       </div>
     </div>
-    <!-- Stack pills -->
-    <div class="mt-10 text-center">
-      <p class="sec-label" data-es="Stack" data-en="Stack">Stack</p>
+    <div class="pills">
+      <span class="pill">SRE</span><span class="pill">Kubernetes</span>
+      <span class="pill">Terraform</span><span class="pill">Python</span>
+      <span class="pill">Kafka</span><span class="pill">CI/CD</span>
+      <span class="pill">AI Agents</span><span class="pill">FastAPI</span>
+      <span class="pill">Grafana</span><span class="pill">Prometheus</span>
+      <span class="pill">BigQuery</span><span class="pill">Docker</span>
+    </div>
+  </div>
+</section>
+
+<section class="bio-section">
+  <div class="wrap">
+    <div class="grid-bio">
       <div>
-        <span class="pill">SRE</span><span class="pill">Kubernetes</span>
-        <span class="pill">Terraform</span><span class="pill">Python</span>
-        <span class="pill">Kafka</span><span class="pill">CI/CD</span>
-        <span class="pill">AI Agents</span><span class="pill">FastAPI</span>
-        <span class="pill">Grafana</span><span class="pill">Prometheus</span>
-        <span class="pill">BigQuery</span><span class="pill">Docker</span>
+        <p class="sec-lbl" data-es="Quien soy" data-en="Who I am">Quien soy</p>
+        <p class="bio-p"
+           data-es="Soy el ingeniero que asegura que los sistemas no caigan cuando mas importa. He migrado ecosistemas de pago con zero downtime, construido plataformas de inteligencia para 400+ tiendas, y disenado agentes de IA que resuelven incidentes antes de que el humano se despierta."
+           data-en="I'm the engineer who makes sure systems don't fall when it matters most. I've migrated payment ecosystems with zero downtime, built intelligence platforms for 400+ stores, and designed AI agents that resolve incidents before the human wakes up.">
+          Soy el ingeniero que asegura que los sistemas no caigan cuando mas importa. He migrado ecosistemas de pago con zero downtime, construido plataformas de inteligencia para 400+ tiendas, y disenado agentes de IA que resuelven incidentes antes de que el humano se despierta.
+        </p>
+        <p class="bio-p" style="font-size:.85rem"
+           data-es="Busco mi proximo capitulo: rol Staff/Senior en Europa o equipo remote-first a escala real. Disponible para reubicacion: Finlandia, Paises Bajos, Alemania, Noruega, Irlanda."
+           data-en="Looking for my next chapter: Staff/Senior role in Europe or a real-scale remote-first team. Open to relocation: Finland, Netherlands, Germany, Norway, Ireland.">
+          Busco mi proximo capitulo: rol Staff/Senior en Europa. Disponible para reubicacion.
+        </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="max-w-5xl mx-auto px-5 py-16">
-  <div class="grid md:grid-cols-2 gap-16 items-start">
-    <!-- Bio -->
-    <div>
-      <p class="sec-label" data-es="Quien soy" data-en="Who I am">Quien soy</p>
-      <p class="text-slate-300 leading-relaxed mb-4"
-         data-es="Soy el ingeniero que asegura que los sistemas no caigan cuando mas importa. He migrado ecosistemas de pago con zero downtime, construido plataformas de inteligencia para 400+ tiendas, y disenado agentes de IA que resuelven incidentes antes de que el humano se despierta."
-         data-en="I'm the engineer who makes sure systems don't fall when it matters most. I've migrated payment ecosystems with zero downtime, built intelligence platforms for 400+ stores, and designed AI agents that resolve incidents before the human wakes up.">
-        Soy el ingeniero que asegura que los sistemas no caigan cuando mas importa. He migrado ecosistemas de pago con zero downtime, construido plataformas de inteligencia para 400+ tiendas, y disenado agentes de IA que resuelven incidentes antes de que el humano se despierta.
-      </p>
-      <p class="text-slate-400 text-sm leading-relaxed"
-         data-es="Hoy busco mi proximo capitulo: un rol Staff/Senior en Europa o un equipo remote-first que opere a escala real. Disponible para reubicacion a Finlandia, Paises Bajos, Alemania, Noruega, Irlanda."
-         data-en="Now I'm looking for my next chapter: a Staff/Senior role in Europe or a remote-first team that operates at real scale. Open to relocation: Finland, Netherlands, Germany, Norway, Ireland.">
-        Hoy busco mi proximo capitulo: un rol Staff/Senior en Europa o un equipo remote-first a escala real. Disponible para reubicacion.
-      </p>
-    </div>
-    <!-- Timeline -->
-    <div>
-      <p class="sec-label" data-es="Trayectoria" data-en="Experience">Trayectoria</p>
-      <div class="space-y-6">
-        <div class="tl-item">
-          <p class="font-bold text-white">SRE Lead — Walmart Chile</p>
-          <p class="text-sky-400 text-xs font-semibold mb-1">2022 — presente</p>
-          <p class="text-slate-400 text-sm"
-             data-es="Plataforma IA multi-agente (400+ tiendas, 23 dominios). Migracion Kafka/POS zero-downtime. Rotacion de certificados masiva."
-             data-en="Multi-agent AI platform (400+ stores, 23 domains). Kafka/POS zero-downtime migration. Mass certificate rotation.">
-            Plataforma IA multi-agente · Kafka/POS zero-downtime · Cert rotation masiva.
-          </p>
-        </div>
-        <div class="tl-item">
-          <p class="font-bold text-white"
-             data-es="Platform / DevOps Engineer" data-en="Platform / DevOps Engineer">Platform / DevOps Engineer</p>
-          <p class="text-violet-400 text-xs font-semibold mb-1">2017 — 2022</p>
-          <p class="text-slate-400 text-sm"
-             data-es="Infraestructura critica multi-site. CI/CD pipelines. Automatizacion de operaciones a escala."
-             data-en="Critical multi-site infrastructure. CI/CD pipelines. Operations automation at scale.">
-            Infra critica multi-site · CI/CD · Automatizacion a escala.
-          </p>
-        </div>
-        <div class="tl-item">
-          <p class="font-bold text-white"
-             data-es="Software / Systems Engineer" data-en="Software / Systems Engineer">Software / Systems Engineer</p>
-          <p class="text-emerald-400 text-xs font-semibold mb-1">2013 — 2017</p>
-          <p class="text-slate-400 text-sm"
-             data-es="Sistemas de backend, integraciones y automatizacion de procesos."
-             data-en="Backend systems, integrations, and process automation.">
-            Backend · Integraciones · Automatizacion.
-          </p>
+      <div>
+        <p class="sec-lbl" data-es="Trayectoria" data-en="Experience">Trayectoria</p>
+        <div class="tl-wrap">
+          <div class="tl-item">
+            <div class="tl-role">SRE Lead — Walmart Chile</div>
+            <div class="tl-date">2022 — presente</div>
+            <div class="tl-desc"
+                 data-es="Plataforma IA multi-agente (400+ tiendas, 23 dominios). Kafka/POS zero-downtime. Rotacion masiva de certificados."
+                 data-en="Multi-agent AI platform (400+ stores, 23 domains). Kafka/POS zero-downtime migration. Mass certificate rotation.">
+              Plataforma IA multi-agente · Kafka/POS zero-downtime · Cert rotation masiva.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-role" data-es="Platform / DevOps Engineer" data-en="Platform / DevOps Engineer">Platform / DevOps Engineer</div>
+            <div class="tl-date" style="color:var(--a2)">2017 — 2022</div>
+            <div class="tl-desc"
+                 data-es="Infraestructura critica multi-site. CI/CD pipelines. Automatizacion a escala."
+                 data-en="Critical multi-site infrastructure. CI/CD pipelines. Operations automation at scale.">
+              Infra critica multi-site · CI/CD · Automatizacion a escala.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-role" data-es="Software / Systems Engineer" data-en="Software / Systems Engineer">Software / Systems Engineer</div>
+            <div class="tl-date" style="color:var(--a3)">2013 — 2017</div>
+            <div class="tl-desc"
+                 data-es="Sistemas backend, integraciones y automatizacion de procesos."
+                 data-en="Backend systems, integrations, and process automation.">
+              Backend · Integraciones · Automatizacion.
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="bg-slate-900/30 border-y border-slate-800/60 py-16">
-  <div class="max-w-5xl mx-auto px-5">
-    <p class="sec-label text-center" data-es="Proyectos" data-en="Projects">Proyectos</p>
-    <h2 class="text-3xl font-black text-center mb-2"
-        data-es="Cosas que construi" data-en="Things I built">Cosas que construi</h2>
-    <p class="text-slate-500 text-center text-sm mb-10"
-       data-es="Cada uno resuelve un problema real." data-en="Each one solves a real problem.">Cada uno resuelve un problema real.</p>
-    <div class="grid sm:grid-cols-2 gap-5">
-      <!-- Career Radar -->
-      <a href="https://vicarana.github.io/career-radar/" target="_blank" rel="noopener"
-         class="card block rounded-2xl border border-slate-700/80 bg-slate-900 p-6">
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-sky-950 text-sky-400 border border-sky-900">PWA</span>
-          <span class="text-slate-600 text-xs">career-radar</span>
-        </div>
-        <h3 class="text-white font-black text-lg mb-2">Career Radar</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4"
-           data-es="El problema: los job boards son ruido. La solucion: un radar personal que agrega, califica A-F y prioriza roles SRE/DevOps con match real. Corre en GitHub Actions, sin servidor."
-           data-en="Problem: job boards are noise. Solution: a personal radar that aggregates, grades A-F, and prioritizes SRE/DevOps roles with real match. Runs on GitHub Actions, no server.">
-          El problema: los job boards son ruido. Solucion: radar personal que agrega y califica A-F roles SRE/DevOps. Corre en GitHub Actions, sin servidor.
+<section class="cards-section" id="projects">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Proyectos" data-en="Projects">Proyectos</p>
+    <h2 class="sec-h" data-es="Cosas que construi" data-en="Things I built">Cosas que construi</h2>
+    <p class="sec-sub" data-es="Cada uno resuelve un problema real." data-en="Each one solves a real problem.">Cada uno resuelve un problema real.</p>
+    <div class="grid2">
+      <a href="https://vicarana.github.io/career-radar/" target="_blank" rel="noopener" class="card-el">
+        <div class="card-top"><span class="badge badge-sky">PWA</span><span class="card-repo">career-radar</span></div>
+        <div class="card-h">Career Radar</div>
+        <p class="card-p"
+           data-es="Job boards son ruido. Este radar agrega, califica A-F y prioriza roles SRE/DevOps con match real. Corre en GitHub Actions, sin servidor."
+           data-en="Job boards are noise. This radar aggregates, grades A-F, and surfaces SRE/DevOps roles with real match. Runs on GitHub Actions, no server.">
+          Job boards son ruido. Este radar agrega, califica A-F y prioriza roles SRE/DevOps. GitHub Actions, sin servidor.
         </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="pill">Python</span><span class="pill">PWA</span><span class="pill">GitHub Actions</span>
-        </div>
+        <div class="card-pills"><span class="pill">Python</span><span class="pill">PWA</span><span class="pill">GH Actions</span></div>
       </a>
-      <!-- Mobility Radar -->
-      <a href="https://vicarana.github.io/wm-mobility/" target="_blank" rel="noopener"
-         class="card block rounded-2xl border border-slate-700/80 bg-slate-900 p-6">
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-900">OSS · MIT</span>
-          <span class="text-slate-600 text-xs">wm-mobility</span>
-        </div>
-        <h3 class="text-white font-black text-lg mb-2">Mobility Radar</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4"
-           data-es="El problema: rastrear rutas de reubicacion internacional es caos. Solucion: PWA open-source configurable por JSON. Zero dependencias, 100% tuyo."
-           data-en="Problem: tracking international relocation routes is chaos. Solution: JSON-configurable open-source PWA. Zero dependencies, 100% yours.">
-          El problema: rutas de reubicacion son caos. Solucion: PWA open-source configurable por JSON. Zero dependencias.
+      <a href="https://vicarana.github.io/wm-mobility/" target="_blank" rel="noopener" class="card-el">
+        <div class="card-top"><span class="badge badge-grn">OSS · MIT</span><span class="card-repo">wm-mobility</span></div>
+        <div class="card-h">Mobility Radar</div>
+        <p class="card-p"
+           data-es="Rastrear rutas de reubicacion internacional es caos. PWA open-source configurable por JSON. Zero dependencias."
+           data-en="Tracking international relocation routes is chaos. JSON-configurable open-source PWA. Zero dependencies.">
+          Rastrear rutas de reubicacion es caos. PWA open-source configurable por JSON. Zero dependencias.
         </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="pill">Vanilla JS</span><span class="pill">PWA</span><span class="pill">MIT</span>
-        </div>
+        <div class="card-pills"><span class="pill">Vanilla JS</span><span class="pill">PWA</span><span class="pill">MIT</span></div>
       </a>
-      <!-- Enterprise AI Platform -->
-      <div class="card rounded-2xl border border-slate-700/80 bg-slate-900 p-6">
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-900">Enterprise</span>
-          <span class="text-slate-600 text-xs">internal</span>
-        </div>
-        <h3 class="text-white font-black text-lg mb-2"
-            data-es="Plataforma IA — 400+ Tiendas" data-en="AI Platform — 400+ Stores">Plataforma IA — 400+ Tiendas</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4"
-           data-es="El problema: 400 tiendas, 23 dominios, un equipo que no puede estar en todos lados. Solucion: 3 agentes IA especializados (ops, riesgo, CX) con corpus de conocimiento centralizado."
-           data-en="Problem: 400 stores, 23 domains, a team that can't be everywhere. Solution: 3 specialized AI agents (ops, risk, CX) with a centralized knowledge corpus.">
-          400 tiendas, 23 dominios. 3 agentes IA especializados (ops, riesgo, CX) con corpus de conocimiento centralizado.
+      <div class="card-el">
+        <div class="card-top"><span class="badge badge-amb">Enterprise</span><span class="card-repo">internal</span></div>
+        <div class="card-h" data-es="Plataforma IA — 400+ Tiendas" data-en="AI Platform — 400+ Stores">Plataforma IA — 400+ Tiendas</div>
+        <p class="card-p"
+           data-es="400 tiendas, 23 dominios, un equipo que no puede estar en todos lados. Solucion: 3 agentes IA especializados con corpus de conocimiento centralizado."
+           data-en="400 stores, 23 domains, one team that can't be everywhere. Solution: 3 specialized AI agents with centralized knowledge corpus.">
+          400 tiendas, 23 dominios. 3 agentes IA (ops, riesgo, CX) con corpus centralizado.
         </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="pill">FastAPI</span><span class="pill">Python</span><span class="pill">AI Agents</span>
-        </div>
+        <div class="card-pills"><span class="pill">FastAPI</span><span class="pill">Python</span><span class="pill">AI Agents</span></div>
       </div>
-      <!-- AraOps -->
-      <a href="https://vicarana.github.io/AraOps/" target="_blank" rel="noopener"
-         class="card block rounded-2xl border border-violet-800/50 bg-slate-900 p-6">
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-violet-950 text-violet-400 border border-violet-900">Servicios</span>
-          <span class="text-slate-600 text-xs">araops</span>
-        </div>
-        <h3 class="text-white font-black text-lg mb-2">AraOps</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4"
-           data-es="El problema: PyMEs pierden horas en trabajo manual. Solucion: robots RPA, agentes IA y dashboards a medida. Precio fijo, resultado claro, entrega en 1-2 semanas."
-           data-en="Problem: SMBs lose hours to manual work. Solution: RPA robots, AI agents, custom dashboards. Fixed price, clear outcome, delivered in 1-2 weeks.">
-          PyMEs pierden horas en trabajo manual. Solucion: RPA, agentes IA y dashboards. Precio fijo, 1-2 semanas.
+      <a href="https://vicarana.github.io/AraOps/" target="_blank" rel="noopener" class="card-el" style="border-color:var(--border2)">
+        <div class="card-top"><span class="badge badge-vio">Servicios</span><span class="card-repo">araops</span></div>
+        <div class="card-h">AraOps</div>
+        <p class="card-p"
+           data-es="PyMEs pierden horas en trabajo manual. Robots RPA, agentes IA y dashboards a medida. Precio fijo, 1-2 semanas."
+           data-en="SMBs lose hours to manual work. RPA robots, AI agents, custom dashboards. Fixed price, 1-2 weeks.">
+          PyMEs pierden horas en trabajo manual. RPA, agentes IA y dashboards. Precio fijo, 1-2 semanas.
         </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="pill">Python</span><span class="pill">AI Agents</span><span class="pill">RPA</span>
-        </div>
+        <div class="card-pills"><span class="pill">Python</span><span class="pill">AI Agents</span><span class="pill">RPA</span></div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="max-w-5xl mx-auto px-5 py-16">
-  <p class="sec-label text-center" data-es="Servicios" data-en="Services">Servicios</p>
-  <h2 class="text-3xl font-black text-center mb-2"
-      data-es="Precio fijo. Resultado claro." data-en="Fixed price. Clear outcome.">Precio fijo. Resultado claro.</h2>
-  <p class="text-slate-500 text-center text-sm mb-10"
-     data-es="Sin sorpresas. Sin horas-hombre. Entrego el resultado." data-en="No surprises. No hourly billing. I deliver the outcome.">Sin sorpresas. Sin horas-hombre. Entrego el resultado.</p>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
-      <h3 class="font-black text-sky-300 mb-1" data-es="Robot RPA" data-en="RPA Robot">Robot RPA</h3>
-      <p class="text-slate-500 text-xs mb-3" data-es="1-2 semanas" data-en="1-2 weeks">1-2 semanas</p>
-      <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Un proceso repetitivo automatizado de punta a punta." data-en="One repetitive process automated end to end.">Un proceso repetitivo automatizado de punta a punta.</p>
-      <p class="text-2xl font-black">$490 <span class="text-sm font-normal text-slate-500">USD</span></p>
-    </div>
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
-      <h3 class="font-black text-sky-300 mb-1" data-es="Dashboard en 5 dias" data-en="Dashboard in 5 days">Dashboard en 5 dias</h3>
-      <p class="text-slate-500 text-xs mb-3" data-es="5 dias" data-en="5 days">5 dias</p>
-      <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Panel interactivo desde tus datos con KPIs y graficos." data-en="Interactive panel from your data with KPIs and charts.">Panel interactivo desde tus datos.</p>
-      <p class="text-2xl font-black">$420 <span class="text-sm font-normal text-slate-500">USD</span></p>
-    </div>
-    <div class="relative rounded-2xl border-2 border-sky-500/60 bg-slate-900 p-5 flex flex-col">
-      <span class="pkg-tag" data-es="Mas pedido" data-en="Most popular">Mas pedido</span>
-      <h3 class="font-black text-sky-300 mb-1" data-es="Agente IA a medida" data-en="Custom AI Agent">Agente IA a medida</h3>
-      <p class="text-slate-500 text-xs mb-3" data-es="2 semanas" data-en="2 weeks">2 semanas</p>
-      <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Asistente LLM para tu flujo de trabajo: FAQ, doc-QA, copiloto interno."
-         data-en="LLM assistant for your workflow: FAQ, doc-QA, internal copilot.">Asistente LLM para tu flujo: FAQ, doc-QA, copiloto.</p>
-      <p class="text-2xl font-black">$720 <span class="text-sm font-normal text-slate-500">USD</span></p>
-    </div>
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
-      <h3 class="font-black text-sky-300 mb-1" data-es="Script Python" data-en="Python Script">Script Python</h3>
-      <p class="text-slate-500 text-xs mb-3" data-es="3-5 dias" data-en="3-5 days">3-5 dias</p>
-      <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Herramienta enfocada: procesamiento, API, limpieza de datos."
-         data-en="Focused tool: file processing, API integration, data cleanup.">Herramienta enfocada: procesamiento, API, limpieza.</p>
-      <p class="text-2xl font-black">$240 <span class="text-sm font-normal text-slate-500">USD</span></p>
-    </div>
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col sm:col-span-2 lg:col-span-2">
-      <h3 class="font-black text-sky-300 mb-1" data-es="Retainer mensual" data-en="Monthly retainer">Retainer mensual</h3>
-      <p class="text-slate-500 text-xs mb-3" data-es="8 hs/mes + soporte" data-en="8 hrs/mo + support">8 hs/mes + soporte prioritario</p>
-      <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="La opcion mas rentable: automatizaciones continuas, mantenimiento y soporte prioritario."
-         data-en="The most cost-effective option: continuous automations, maintenance, and priority support.">La opcion mas rentable: automatizaciones continuas + mantenimiento.</p>
-      <p class="text-2xl font-black">$780 <span class="text-sm font-normal text-slate-500">USD/mes</span></p>
+<section class="svc-section" id="services">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Servicios" data-en="Services">Servicios</p>
+    <h2 class="sec-h" data-es="Precio fijo. Resultado claro." data-en="Fixed price. Clear outcome.">Precio fijo. Resultado claro.</h2>
+    <p class="sec-sub" data-es="Sin sorpresas. Sin horas-hombre." data-en="No surprises. No hourly billing.">Sin sorpresas. Sin horas-hombre.</p>
+    <div class="grid3">
+      <div class="svc-card">
+        <div class="svc-h" data-es="Robot RPA" data-en="RPA Robot">Robot RPA</div>
+        <div class="svc-meta" data-es="1-2 semanas" data-en="1-2 weeks">1-2 semanas</div>
+        <p class="svc-p" data-es="Un proceso repetitivo automatizado de punta a punta." data-en="One repetitive process automated end to end.">Un proceso repetitivo automatizado de punta a punta.</p>
+        <div class="svc-price">$490 <span>USD</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-h" data-es="Dashboard en 5 dias" data-en="Dashboard in 5 days">Dashboard en 5 dias</div>
+        <div class="svc-meta" data-es="5 dias" data-en="5 days">5 dias</div>
+        <p class="svc-p" data-es="Panel interactivo desde tus datos con KPIs y graficos." data-en="Interactive panel from your data with KPIs and charts.">Panel interactivo desde tus datos.</p>
+        <div class="svc-price">$420 <span>USD</span></div>
+      </div>
+      <div class="svc-card svc-popular" data-lbl="Mas pedido">
+        <div class="svc-h" data-es="Agente IA a medida" data-en="Custom AI Agent">Agente IA a medida</div>
+        <div class="svc-meta" data-es="2 semanas" data-en="2 weeks">2 semanas</div>
+        <p class="svc-p" data-es="Asistente LLM para tu flujo: FAQ, doc-QA, copiloto interno." data-en="LLM assistant for your workflow: FAQ, doc-QA, internal copilot.">Asistente LLM: FAQ, doc-QA, copiloto.</p>
+        <div class="svc-price">$720 <span>USD</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-h" data-es="Script Python" data-en="Python Script">Script Python</div>
+        <div class="svc-meta" data-es="3-5 dias" data-en="3-5 days">3-5 dias</div>
+        <p class="svc-p" data-es="Herramienta enfocada: procesamiento, API, limpieza." data-en="Focused tool: file processing, API, data cleanup.">Herramienta enfocada: procesamiento, API, limpieza.</p>
+        <div class="svc-price">$240 <span>USD</span></div>
+      </div>
+      <div class="svc-card span2">
+        <div class="svc-h" data-es="Retainer mensual" data-en="Monthly retainer">Retainer mensual</div>
+        <div class="svc-meta" data-es="8 hs/mes + soporte" data-en="8 hrs/mo + support">8 hs/mes + soporte prioritario</div>
+        <p class="svc-p" data-es="La opcion mas rentable: automatizaciones continuas + mantenimiento." data-en="Most cost-effective: continuous automations + maintenance.">Automatizaciones continuas + mantenimiento prioritario.</p>
+        <div class="svc-price">$780 <span>USD/mes</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="bg-slate-900/30 border-t border-slate-800/60 py-20">
-  <div class="max-w-2xl mx-auto px-5 text-center">
-    <p class="sec-label" data-es="Contacto" data-en="Contact">Contacto</p>
-    <h2 class="text-3xl font-black mb-3" data-es="Hablemos" data-en="Let's talk">Hablemos</h2>
-    <p class="text-slate-400 mb-2 text-sm"
-       data-es="Si tienes un sistema critico que necesita un SRE senior, quieres automatizar un proceso, o buscas un AI-ops engineer para tu equipo en Europa — escribeme."
-       data-en="If you have a critical system that needs a senior SRE, want to automate a process, or are looking for an AI-ops engineer for your team in Europe — write to me.">
-      Sistema critico, proceso a automatizar, o un rol senior en Europa — escribeme.
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Contacto" data-en="Contact">Contacto</p>
+    <h2 class="contact-h" data-es="Hablemos" data-en="Let's talk">Hablemos</h2>
+    <p class="contact-p"
+       data-es="Sistema critico, proceso a automatizar, o un rol senior en Europa — escribeme."
+       data-en="Critical system, process to automate, or a senior EU role — write to me.">
+      Sistema critico, proceso a automatizar, o rol senior en Europa — escribeme.
     </p>
-    <p class="text-slate-600 text-xs mb-10"
-       data-es="Respondo en menos de 24 horas." data-en="I reply within 24 hours.">Respondo en menos de 24 horas.</p>
-    <div class="flex flex-wrap gap-3 justify-center">
-      <a href="mailto:victoraranacl@gmail.com"
-         class="rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-6 py-3 transition text-sm">
-        Email
-      </a>
-      <a href="https://www.linkedin.com/in/victorarana/" target="_blank" rel="noopener"
-         class="rounded-lg border border-slate-600 hover:border-sky-400 hover:text-sky-400 font-bold px-6 py-3 transition text-sm">
-        LinkedIn
-      </a>
-      <a href="https://github.com/vicarana" target="_blank" rel="noopener"
-         class="rounded-lg border border-slate-600 hover:border-sky-400 hover:text-sky-400 font-bold px-6 py-3 transition text-sm">
-        GitHub
-      </a>
+    <p class="contact-foot" data-es="Respondo en menos de 24 horas." data-en="I reply within 24 hours.">Respondo en menos de 24 horas.</p>
+    <div class="contact-btns">
+      <a href="mailto:victoraranacl@gmail.com" class="btn-email">Email</a>
+      <a href="https://www.linkedin.com/in/victorarana/" target="_blank" rel="noopener" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/vicarana" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
     </div>
   </div>
 </section>
 
-<footer class="border-t border-slate-800/40 text-center py-8">
-  <p class="text-slate-600 text-xs">
-    Victor Arana &mdash; <span id="yr"></span> &mdash;
-    <a href="https://github.com/vicarana" class="hover:text-sky-400 transition">github.com/vicarana</a>
-    &mdash; UTC-4
-  </p>
+<footer>
+  <p>Victor Arana &mdash; <span id="yr"></span> &mdash;
+  <a href="https://github.com/vicarana">github.com/vicarana</a> &mdash; UTC-4</p>
 </footer>
 
 <script>
-document.getElementById('yr').textContent=new Date().getFullYear();
-let lang='es';
-const btn=document.getElementById('langBtn');
-function setLang(l){
-  lang=l; document.documentElement.lang=l;
-  btn.textContent=l==='es'?'EN':'ES';
-  document.querySelectorAll('[data-es]').forEach(el=>{
-    const t=el.getAttribute('data-'+l);
-    if(t!==null) el.textContent=t;
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── Language ── */
+let lang = 'es';
+const langBtn = document.getElementById('langBtn');
+function setLang(l) {
+  lang = l; document.documentElement.lang = l;
+  langBtn.textContent = l === 'es' ? 'EN' : 'ES';
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const t = el.getAttribute('data-' + l);
+    if (t !== null) el.textContent = t;
   });
 }
-btn.addEventListener('click',()=>setLang(lang==='es'?'en':'es'));
+langBtn.addEventListener('click', () => setLang(lang === 'es' ? 'en' : 'es'));
+
+/* ── Theme ── */
+const themes  = ['space', 'samurai', 'ai'];
+const labels  = ['Samurai', 'AI', 'Space'];
+const themeBtn = document.getElementById('themeBtn');
+let ti = 0;
+function applyTheme(i) {
+  document.documentElement.setAttribute('data-theme', themes[i]);
+  themeBtn.textContent = labels[(i + 1) % themes.length];
+  try { localStorage.setItem('va_theme', i); } catch(e){}
+}
+try { ti = parseInt(localStorage.getItem('va_theme') || '0'); } catch(e){}
+applyTheme(ti);
+themeBtn.addEventListener('click', () => { ti = (ti + 1) % themes.length; applyTheme(ti); });
 </script>
 </body>
 </html>
