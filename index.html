@@ -3,320 +3,388 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="description" content="Victor Arana — SRE Lead, Platform Engineer, AI Builder. 10+ years in software reliability, automation and AI."/>
+<meta name="description" content="Victor Arana — SRE Lead keeping 400+ stores running. Building AI-ops tools. Open to EU relocation and senior remote roles."/>
 <meta property="og:title" content="Victor Arana — SRE / Platform / AI"/>
-<meta property="og:description" content="Building reliable systems and intelligent automation. Available for relocation and remote senior roles."/>
+<meta property="og:description" content="I kept 400+ retail stores running at 99.9%. Now I'm building the AI layer on top."/>
 <meta property="og:url" content="https://vicarana.github.io"/>
-<title>Victor Arana — SRE / Platform / AI</title>
+<title>Victor Arana — SRE · Platform · AI</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   html{scroll-behavior:smooth}
-  .grad-text{background:linear-gradient(90deg,#38bdf8,#818cf8,#34d399);
-    -webkit-background-clip:text;background-clip:text;color:transparent}
-  .card-hover{transition:border-color .2s,transform .2s}
-  .card-hover:hover{border-color:#38bdf8;transform:translateY(-2px)}
-  .skill-pill{display:inline-block;padding:4px 14px;border-radius:999px;font-size:.75rem;
-    font-weight:600;background:#0f172a;border:1px solid #1e3a5f;color:#93c5fd;
-    margin:3px}
-  .pkg-popular{position:relative}
-  .pkg-popular::before{content:attr(data-label);position:absolute;top:-12px;left:18px;
-    background:#38bdf8;color:#0f172a;font-size:.65rem;font-weight:800;
-    padding:2px 10px;border-radius:999px;letter-spacing:.05em}
+  /* Gradient text */
+  .gt{background:linear-gradient(90deg,#38bdf8 0%,#818cf8 50%,#34d399 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    display:inline-block}
+  /* Animated underline on links */
+  .ul-hover{position:relative}
+  .ul-hover::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;
+    background:#38bdf8;transition:width .25s}
+  .ul-hover:hover::after{width:100%}
+  /* Card */
+  .card{transition:border-color .2s,transform .2s,box-shadow .2s}
+  .card:hover{border-color:#38bdf8 !important;transform:translateY(-3px);
+    box-shadow:0 8px 30px rgba(56,189,248,.12)}
+  /* Skill pill */
+  .pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.7rem;
+    font-weight:700;background:#0f172a;border:1px solid #1e3a5f;color:#93c5fd;margin:2px}
+  /* Available badge */
+  .avail{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;
+    border-radius:999px;border:1px solid #166534;background:#052e1a;
+    color:#86efac;font-size:.75rem;font-weight:700;letter-spacing:.03em}
+  .avail .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;
+    animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  /* Timeline */
+  .tl-item{position:relative;padding-left:20px}
+  .tl-item::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;
+    border-radius:50%;background:#38bdf8;border:2px solid #0f172a}
+  .tl-item::after{content:'';position:absolute;left:3px;top:14px;width:2px;
+    height:calc(100% + 8px);background:#1e3a5f}
+  .tl-item:last-child::after{display:none}
+  /* Package popular badge */
+  .pkg-tag{position:absolute;top:-11px;left:16px;background:#38bdf8;color:#0f172a;
+    font-size:.65rem;font-weight:800;padding:2px 10px;border-radius:999px}
+  /* Section label */
+  .sec-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;color:#475569;
+    text-transform:uppercase;margin-bottom:12px}
   nav a{transition:color .15s}
 </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased">
+<body class="bg-slate-950 text-slate-100 antialiased leading-relaxed">
 
 <!-- NAV -->
-<header class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur border-b border-slate-800">
-  <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 py-4 gap-4">
-    <span class="font-extrabold tracking-tight text-sky-400 text-lg">vicarana</span>
-    <div class="hidden sm:flex items-center gap-5 text-sm text-slate-300">
-      <a href="#about"   class="hover:text-sky-400" data-es="Sobre mi"  data-en="About">Sobre mi</a>
-      <a href="#projects" class="hover:text-sky-400" data-es="Proyectos" data-en="Projects">Proyectos</a>
-      <a href="#services" class="hover:text-sky-400" data-es="Servicios" data-en="Services">Servicios</a>
-      <a href="#contact"  class="hover:text-sky-400" data-es="Contacto"  data-en="Contact">Contacto</a>
+<header class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60">
+  <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 py-3 gap-4">
+    <span class="font-black tracking-tight text-white text-lg">ara<span class="text-sky-400">ops</span></span>
+    <div class="hidden sm:flex items-center gap-6 text-sm text-slate-400">
+      <a href="#impact"   class="ul-hover hover:text-white" data-es="Impacto"   data-en="Impact">Impacto</a>
+      <a href="#projects" class="ul-hover hover:text-white" data-es="Proyectos" data-en="Projects">Proyectos</a>
+      <a href="#services" class="ul-hover hover:text-white" data-es="Servicios" data-en="Services">Servicios</a>
+      <a href="#contact"  class="ul-hover hover:text-white" data-es="Contacto"  data-en="Contact">Contacto</a>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-3">
       <a href="https://github.com/vicarana" target="_blank" rel="noopener"
-         class="text-slate-400 hover:text-white text-sm font-semibold">GitHub</a>
+         class="text-slate-500 hover:text-white transition text-sm font-semibold">GitHub</a>
       <button id="langBtn"
-        class="rounded-md border border-slate-600 px-3 py-1 text-sm font-bold hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-400"
+        class="rounded-md border border-slate-700 px-3 py-1 text-xs font-bold hover:bg-slate-800 transition focus:outline-none focus:ring-2 focus:ring-sky-400"
         aria-label="Switch language">EN</button>
     </div>
   </nav>
 </header>
 
 <!-- HERO -->
-<section class="max-w-5xl mx-auto px-5 pt-24 pb-20 text-center">
-  <p class="text-sky-400 font-semibold text-sm tracking-widest mb-4 uppercase"
-     data-es="SRE Lead - Platform Engineer - AI Builder"
-     data-en="SRE Lead - Platform Engineer - AI Builder">
-    SRE Lead - Platform Engineer - AI Builder
-  </p>
-  <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight mb-6">
-    <span class="grad-text">Victor Arana</span>
-  </h1>
-  <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-4 leading-relaxed"
-     data-es="10+ anos construyendo sistemas que no caen, automatizaciones que ahorran horas y agentes de IA que hacen el trabajo pesado."
-     data-en="10+ years building systems that don't fall, automations that save hours, and AI agents that do the heavy lifting.">
-    10+ anos construyendo sistemas que no caen, automatizaciones que ahorran horas y agentes de IA que hacen el trabajo pesado.
-  </p>
-  <p class="text-slate-500 text-sm mb-10"
-     data-es="Disponible para roles senior remotos y reubicacion internacional."
-     data-en="Available for senior remote roles and international relocation.">
-    Disponible para roles senior remotos y reubicacion internacional.
-  </p>
-  <div class="flex flex-wrap gap-3 justify-center">
-    <a href="#projects" class="rounded-lg bg-sky-500 text-slate-950 font-bold px-6 py-3 hover:bg-sky-400 transition"
-       data-es="Ver mi trabajo" data-en="See my work">Ver mi trabajo</a>
-    <a href="#contact" class="rounded-lg border border-slate-600 font-bold px-6 py-3 hover:bg-slate-800 transition"
-       data-es="Hablemos" data-en="Let's talk">Hablemos</a>
+<section class="relative overflow-hidden">
+  <!-- Ambient glow -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10"
+         style="background:radial-gradient(circle,#38bdf8,transparent 70%)"></div>
+    <div class="absolute bottom-0 right-1/4 w-64 h-64 rounded-full opacity-8"
+         style="background:radial-gradient(circle,#818cf8,transparent 70%)"></div>
+  </div>
+  <div class="relative max-w-5xl mx-auto px-5 pt-28 pb-24 text-center">
+    <div class="mb-6">
+      <span class="avail">
+        <span class="dot"></span>
+        <span data-es="Disponible — EU relocation · Remote senior" data-en="Available — EU relocation · Remote senior">Disponible — EU relocation · Remote senior</span>
+      </span>
+    </div>
+    <h1 class="text-5xl sm:text-7xl font-black leading-[1.05] tracking-tight mb-6">
+      <span class="gt">Victor Arana</span>
+    </h1>
+    <p class="text-2xl sm:text-3xl font-bold text-white mb-4"
+       data-es="Manten 400+ tiendas funcionando. Construye la capa de IA encima."
+       data-en="Kept 400+ stores running. Now building the AI layer on top.">
+       Manten 400+ tiendas funcionando. Construye la capa de IA encima.
+    </p>
+    <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10"
+       data-es="SRE Lead con 10+ anos en sistemas criticos a escala retail. Hoy construyo herramientas de AI-ops en abierto. Busco mi proximo rol senior en Europa o remote."
+       data-en="SRE Lead with 10+ years in critical retail-scale systems. Now building AI-ops tools in the open. Looking for my next senior role in Europe or remote.">
+       SRE Lead con 10+ anos en sistemas criticos a escala retail. Hoy construyo herramientas de AI-ops en abierto.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="#projects"
+         class="rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-7 py-3.5 transition text-sm"
+         data-es="Ver mi trabajo" data-en="See my work">Ver mi trabajo</a>
+      <a href="#contact"
+         class="rounded-lg border border-slate-600 hover:border-sky-400 hover:text-sky-400 font-bold px-7 py-3.5 transition text-sm"
+         data-es="Hablemos" data-en="Let's talk">Hablemos</a>
+    </div>
+    <!-- Timezone signal for EU -->
+    <p class="text-xs text-slate-600 mt-8"
+       data-es="UTC-4 (3h de diferencia con Europa Central) · Ingles profesional · Espanol nativo"
+       data-en="UTC-4 (3h from Central Europe) · Professional English · Native Spanish">
+       UTC-4 · 3h offset from EU · Professional English · Native Spanish
+    </p>
   </div>
 </section>
 
-<!-- SKILLS BAR -->
-<section class="border-y border-slate-800 bg-slate-900/50 py-8">
-  <div class="max-w-5xl mx-auto px-5 text-center">
-    <p class="text-slate-500 text-xs uppercase tracking-widest mb-4"
-       data-es="Stack principal" data-en="Core stack">Stack principal</p>
-    <div>
-      <span class="skill-pill">SRE / Reliability</span>
-      <span class="skill-pill">Kubernetes</span>
-      <span class="skill-pill">Terraform</span>
-      <span class="skill-pill">Python</span>
-      <span class="skill-pill">CI/CD</span>
-      <span class="skill-pill">AI Agents / LLMs</span>
-      <span class="skill-pill">Grafana / Prometheus</span>
-      <span class="skill-pill">FastAPI</span>
-      <span class="skill-pill">Kafka</span>
-      <span class="skill-pill">BigQuery</span>
-      <span class="skill-pill">Docker</span>
-      <span class="skill-pill">Data Pipelines</span>
+<!-- IMPACT NUMBERS -->
+<section id="impact" class="border-y border-slate-800/60 bg-slate-900/30">
+  <div class="max-w-5xl mx-auto px-5 py-14">
+    <p class="sec-label text-center"
+       data-es="Lo que he entregado" data-en="What I've delivered">Lo que he entregado</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div class="p-4">
+        <p class="text-4xl font-black text-sky-400">400+</p>
+        <p class="text-slate-400 text-sm mt-1"
+           data-es="tiendas operadas sin caidas" data-en="stores operated without outages">tiendas operadas sin caidas</p>
+      </div>
+      <div class="p-4">
+        <p class="text-4xl font-black text-violet-400">23</p>
+        <p class="text-slate-400 text-sm mt-1"
+           data-es="dominios de infra mapeados" data-en="infrastructure domains mapped">dominios de infra mapeados</p>
+      </div>
+      <div class="p-4">
+        <p class="text-4xl font-black text-emerald-400">3</p>
+        <p class="text-slate-400 text-sm mt-1"
+           data-es="agentes IA en produccion" data-en="AI agents in production">agentes IA en produccion</p>
+      </div>
+      <div class="p-4">
+        <p class="text-4xl font-black text-amber-400">10+</p>
+        <p class="text-slate-400 text-sm mt-1"
+           data-es="anos en sistemas criticos" data-en="years in critical systems">anos en sistemas criticos</p>
+      </div>
+    </div>
+    <!-- Stack pills -->
+    <div class="mt-10 text-center">
+      <p class="sec-label" data-es="Stack" data-en="Stack">Stack</p>
+      <div>
+        <span class="pill">SRE</span><span class="pill">Kubernetes</span>
+        <span class="pill">Terraform</span><span class="pill">Python</span>
+        <span class="pill">Kafka</span><span class="pill">CI/CD</span>
+        <span class="pill">AI Agents</span><span class="pill">FastAPI</span>
+        <span class="pill">Grafana</span><span class="pill">Prometheus</span>
+        <span class="pill">BigQuery</span><span class="pill">Docker</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="max-w-5xl mx-auto px-5 py-20">
-  <div class="grid md:grid-cols-2 gap-12 items-center">
+<!-- EXPERIENCE -->
+<section class="max-w-5xl mx-auto px-5 py-16">
+  <div class="grid md:grid-cols-2 gap-16 items-start">
+    <!-- Bio -->
     <div>
-      <h2 class="text-3xl font-extrabold mb-5"
-          data-es="Quien soy" data-en="Who I am">Quien soy</h2>
+      <p class="sec-label" data-es="Quien soy" data-en="Who I am">Quien soy</p>
       <p class="text-slate-300 leading-relaxed mb-4"
-         data-es="Soy ingeniero de software con foco en confiabilidad, plataformas y automatizacion. Durante mas de una decada he disenado infraestructuras criticas, migrado ecosistemas de pago y construido agentes de IA que resuelven problemas reales."
-         data-en="I'm a software engineer focused on reliability, platforms, and automation. For over a decade I've designed critical infrastructures, migrated payment ecosystems, and built AI agents that solve real problems.">
-        Soy ingeniero de software con foco en confiabilidad, plataformas y automatizacion. Durante mas de una decada he disenado infraestructuras criticas, migrado ecosistemas de pago y construido agentes de IA que resuelven problemas reales.
+         data-es="Soy el ingeniero que asegura que los sistemas no caigan cuando mas importa. He migrado ecosistemas de pago con zero downtime, construido plataformas de inteligencia para 400+ tiendas, y disenado agentes de IA que resuelven incidentes antes de que el humano se despierta."
+         data-en="I'm the engineer who makes sure systems don't fall when it matters most. I've migrated payment ecosystems with zero downtime, built intelligence platforms for 400+ stores, and designed AI agents that resolve incidents before the human wakes up.">
+        Soy el ingeniero que asegura que los sistemas no caigan cuando mas importa. He migrado ecosistemas de pago con zero downtime, construido plataformas de inteligencia para 400+ tiendas, y disenado agentes de IA que resuelven incidentes antes de que el humano se despierta.
       </p>
-      <p class="text-slate-300 leading-relaxed"
-         data-es="Hoy busco mi proximo desafio: un rol senior en un equipo de alto impacto, remoto o en Europa."
-         data-en="Today I'm looking for my next challenge: a senior role in a high-impact team, remote or in Europe.">
-        Hoy busco mi proximo desafio: un rol senior en un equipo de alto impacto, remoto o en Europa.
+      <p class="text-slate-400 text-sm leading-relaxed"
+         data-es="Hoy busco mi proximo capitulo: un rol Staff/Senior en Europa o un equipo remote-first que opere a escala real. Disponible para reubicacion a Finlandia, Paises Bajos, Alemania, Noruega, Irlanda."
+         data-en="Now I'm looking for my next chapter: a Staff/Senior role in Europe or a remote-first team that operates at real scale. Open to relocation: Finland, Netherlands, Germany, Norway, Ireland.">
+        Hoy busco mi proximo capitulo: un rol Staff/Senior en Europa o un equipo remote-first a escala real. Disponible para reubicacion.
       </p>
     </div>
-    <div class="grid grid-cols-2 gap-4 text-center">
-      <div class="rounded-xl bg-slate-900 border border-slate-800 p-6">
-        <p class="text-4xl font-extrabold text-sky-400">10+</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="anos en software" data-en="years in software">anos en software</p>
-      </div>
-      <div class="rounded-xl bg-slate-900 border border-slate-800 p-6">
-        <p class="text-4xl font-extrabold text-sky-400">400+</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="tiendas operadas" data-en="stores operated">tiendas operadas</p>
-      </div>
-      <div class="rounded-xl bg-slate-900 border border-slate-800 p-6">
-        <p class="text-4xl font-extrabold text-sky-400">23</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="dominios mapeados" data-en="domains mapped">dominios mapeados</p>
-      </div>
-      <div class="rounded-xl bg-slate-900 border border-slate-800 p-6">
-        <p class="text-4xl font-extrabold text-sky-400">3</p>
-        <p class="text-slate-400 text-sm mt-1"
-           data-es="agentes IA en prod" data-en="AI agents in prod">agentes IA en prod</p>
+    <!-- Timeline -->
+    <div>
+      <p class="sec-label" data-es="Trayectoria" data-en="Experience">Trayectoria</p>
+      <div class="space-y-6">
+        <div class="tl-item">
+          <p class="font-bold text-white">SRE Lead — Walmart Chile</p>
+          <p class="text-sky-400 text-xs font-semibold mb-1">2022 — presente</p>
+          <p class="text-slate-400 text-sm"
+             data-es="Plataforma IA multi-agente (400+ tiendas, 23 dominios). Migracion Kafka/POS zero-downtime. Rotacion de certificados masiva."
+             data-en="Multi-agent AI platform (400+ stores, 23 domains). Kafka/POS zero-downtime migration. Mass certificate rotation.">
+            Plataforma IA multi-agente · Kafka/POS zero-downtime · Cert rotation masiva.
+          </p>
+        </div>
+        <div class="tl-item">
+          <p class="font-bold text-white"
+             data-es="Platform / DevOps Engineer" data-en="Platform / DevOps Engineer">Platform / DevOps Engineer</p>
+          <p class="text-violet-400 text-xs font-semibold mb-1">2017 — 2022</p>
+          <p class="text-slate-400 text-sm"
+             data-es="Infraestructura critica multi-site. CI/CD pipelines. Automatizacion de operaciones a escala."
+             data-en="Critical multi-site infrastructure. CI/CD pipelines. Operations automation at scale.">
+            Infra critica multi-site · CI/CD · Automatizacion a escala.
+          </p>
+        </div>
+        <div class="tl-item">
+          <p class="font-bold text-white"
+             data-es="Software / Systems Engineer" data-en="Software / Systems Engineer">Software / Systems Engineer</p>
+          <p class="text-emerald-400 text-xs font-semibold mb-1">2013 — 2017</p>
+          <p class="text-slate-400 text-sm"
+             data-es="Sistemas de backend, integraciones y automatizacion de procesos."
+             data-en="Backend systems, integrations, and process automation.">
+            Backend · Integraciones · Automatizacion.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="bg-slate-900/40 border-y border-slate-800 py-20">
+<section id="projects" class="bg-slate-900/30 border-y border-slate-800/60 py-16">
   <div class="max-w-5xl mx-auto px-5">
-    <h2 class="text-3xl font-extrabold mb-3 text-center"
-        data-es="Proyectos" data-en="Projects">Proyectos</h2>
-    <p class="text-slate-400 text-center mb-12 text-sm"
-       data-es="Cosas que construi y que puedes usar ahora mismo."
-       data-en="Things I built that you can use right now.">
-      Cosas que construi y que puedes usar ahora mismo.
-    </p>
-    <div class="grid sm:grid-cols-2 gap-6">
-
+    <p class="sec-label text-center" data-es="Proyectos" data-en="Projects">Proyectos</p>
+    <h2 class="text-3xl font-black text-center mb-2"
+        data-es="Cosas que construi" data-en="Things I built">Cosas que construi</h2>
+    <p class="text-slate-500 text-center text-sm mb-10"
+       data-es="Cada uno resuelve un problema real." data-en="Each one solves a real problem.">Cada uno resuelve un problema real.</p>
+    <div class="grid sm:grid-cols-2 gap-5">
       <!-- Career Radar -->
       <a href="https://vicarana.github.io/career-radar/" target="_blank" rel="noopener"
-         class="card-hover block rounded-2xl border border-slate-700 bg-slate-900 p-6 no-underline">
-        <div class="flex items-start justify-between mb-3">
-          <span class="text-xs font-bold uppercase tracking-widest text-sky-400 bg-sky-950 px-2 py-0.5 rounded">PWA</span>
-          <span class="text-slate-500 text-sm">vicarana.github.io/career-radar</span>
+         class="card block rounded-2xl border border-slate-700/80 bg-slate-900 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-sky-950 text-sky-400 border border-sky-900">PWA</span>
+          <span class="text-slate-600 text-xs">career-radar</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">Career Radar</h3>
-        <p class="text-slate-400 text-sm leading-relaxed"
-           data-es="PWA instalable en iPhone. Agrega roles SRE/DevOps con grado A-F, barra de match y badges de visa. Corre en GitHub Actions, sin servidor."
-           data-en="iPhone-installable PWA. Aggregates SRE/DevOps roles with A-F grade, match bars and visa badges. Runs on GitHub Actions, no server.">
-          PWA instalable en iPhone. Agrega roles SRE/DevOps con grado A-F, barra de match y badges de visa.
+        <h3 class="text-white font-black text-lg mb-2">Career Radar</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4"
+           data-es="El problema: los job boards son ruido. La solucion: un radar personal que agrega, califica A-F y prioriza roles SRE/DevOps con match real. Corre en GitHub Actions, sin servidor."
+           data-en="Problem: job boards are noise. Solution: a personal radar that aggregates, grades A-F, and prioritizes SRE/DevOps roles with real match. Runs on GitHub Actions, no server.">
+          El problema: los job boards son ruido. Solucion: radar personal que agrega y califica A-F roles SRE/DevOps. Corre en GitHub Actions, sin servidor.
         </p>
-        <div class="mt-4 flex gap-2 flex-wrap">
-          <span class="skill-pill">Python</span><span class="skill-pill">PWA</span><span class="skill-pill">GitHub Actions</span>
+        <div class="flex flex-wrap gap-1">
+          <span class="pill">Python</span><span class="pill">PWA</span><span class="pill">GitHub Actions</span>
         </div>
       </a>
-
       <!-- Mobility Radar -->
       <a href="https://vicarana.github.io/wm-mobility/" target="_blank" rel="noopener"
-         class="card-hover block rounded-2xl border border-slate-700 bg-slate-900 p-6 no-underline">
-        <div class="flex items-start justify-between mb-3">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded">OSS · MIT</span>
-          <span class="text-slate-500 text-sm">vicarana.github.io/wm-mobility</span>
+         class="card block rounded-2xl border border-slate-700/80 bg-slate-900 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-900">OSS · MIT</span>
+          <span class="text-slate-600 text-xs">wm-mobility</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">Mobility Radar</h3>
-        <p class="text-slate-400 text-sm leading-relaxed"
-           data-es="Herramienta open-source para rastrear transferencias internas y rutas de reubicacion. Configurable por JSON, cero dependencias."
-           data-en="Open-source tool to track internal transfers and relocation routes. JSON-configurable, zero dependencies.">
-          Herramienta open-source para rastrear transferencias internas y rutas de reubicacion.
+        <h3 class="text-white font-black text-lg mb-2">Mobility Radar</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4"
+           data-es="El problema: rastrear rutas de reubicacion internacional es caos. Solucion: PWA open-source configurable por JSON. Zero dependencias, 100% tuyo."
+           data-en="Problem: tracking international relocation routes is chaos. Solution: JSON-configurable open-source PWA. Zero dependencies, 100% yours.">
+          El problema: rutas de reubicacion son caos. Solucion: PWA open-source configurable por JSON. Zero dependencias.
         </p>
-        <div class="mt-4 flex gap-2 flex-wrap">
-          <span class="skill-pill">Vanilla JS</span><span class="skill-pill">PWA</span><span class="skill-pill">MIT</span>
+        <div class="flex flex-wrap gap-1">
+          <span class="pill">Vanilla JS</span><span class="pill">PWA</span><span class="pill">MIT</span>
         </div>
       </a>
-
-      <!-- AraOps -->
-      <a href="https://vicarana.github.io/AraOps/" target="_blank" rel="noopener"
-         class="card-hover block rounded-2xl border border-slate-700 bg-slate-900 p-6 no-underline">
-        <div class="flex items-start justify-between mb-3">
-          <span class="text-xs font-bold uppercase tracking-widest text-violet-400 bg-violet-950 px-2 py-0.5 rounded">Servicios</span>
-          <span class="text-slate-500 text-sm">araops</span>
+      <!-- Enterprise AI Platform -->
+      <div class="card rounded-2xl border border-slate-700/80 bg-slate-900 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-900">Enterprise</span>
+          <span class="text-slate-600 text-xs">internal</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">AraOps</h3>
-        <p class="text-slate-400 text-sm leading-relaxed"
-           data-es="Agencia de automatizacion e IA para PyMEs. Robots RPA, agentes IA, dashboards y pipelines. Precio fijo, resultado claro."
-           data-en="Automation and AI shop for SMBs. RPA robots, AI agents, dashboards and pipelines. Fixed price, clear outcome.">
-          Agencia de automatizacion e IA para PyMEs. Robots RPA, agentes IA, dashboards y pipelines.
+        <h3 class="text-white font-black text-lg mb-2"
+            data-es="Plataforma IA — 400+ Tiendas" data-en="AI Platform — 400+ Stores">Plataforma IA — 400+ Tiendas</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4"
+           data-es="El problema: 400 tiendas, 23 dominios, un equipo que no puede estar en todos lados. Solucion: 3 agentes IA especializados (ops, riesgo, CX) con corpus de conocimiento centralizado."
+           data-en="Problem: 400 stores, 23 domains, a team that can't be everywhere. Solution: 3 specialized AI agents (ops, risk, CX) with a centralized knowledge corpus.">
+          400 tiendas, 23 dominios. 3 agentes IA especializados (ops, riesgo, CX) con corpus de conocimiento centralizado.
         </p>
-        <div class="mt-4 flex gap-2 flex-wrap">
-          <span class="skill-pill">Python</span><span class="skill-pill">AI Agents</span><span class="skill-pill">RPA</span>
-        </div>
-      </a>
-
-      <!-- Enterprise AI Platform (Quipu — described generically) -->
-      <div class="card-hover rounded-2xl border border-slate-700 bg-slate-900 p-6">
-        <div class="flex items-start justify-between mb-3">
-          <span class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-950 px-2 py-0.5 rounded">Enterprise</span>
-          <span class="text-slate-500 text-sm">internal</span>
-        </div>
-        <h3 class="text-lg font-bold text-white mb-2"
-            data-es="Plataforma IA Empresarial" data-en="Enterprise AI Platform">Plataforma IA Empresarial</h3>
-        <p class="text-slate-400 text-sm leading-relaxed"
-           data-es="Sistema multi-agente de inteligencia para 400+ tiendas: mapeo de 23 dominios, corpus de conocimiento y agentes especializados para ops, riesgo y CX."
-           data-en="Multi-agent intelligence system for 400+ stores: mapping of 23 domains, knowledge corpus, and specialized agents for ops, risk and CX.">
-          Sistema multi-agente de inteligencia para 400+ tiendas: 23 dominios, corpus de conocimiento y agentes especializados.
-        </p>
-        <div class="mt-4 flex gap-2 flex-wrap">
-          <span class="skill-pill">FastAPI</span><span class="skill-pill">AI Agents</span><span class="skill-pill">Python</span>
+        <div class="flex flex-wrap gap-1">
+          <span class="pill">FastAPI</span><span class="pill">Python</span><span class="pill">AI Agents</span>
         </div>
       </div>
-
+      <!-- AraOps -->
+      <a href="https://vicarana.github.io/AraOps/" target="_blank" rel="noopener"
+         class="card block rounded-2xl border border-violet-800/50 bg-slate-900 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-violet-950 text-violet-400 border border-violet-900">Servicios</span>
+          <span class="text-slate-600 text-xs">araops</span>
+        </div>
+        <h3 class="text-white font-black text-lg mb-2">AraOps</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4"
+           data-es="El problema: PyMEs pierden horas en trabajo manual. Solucion: robots RPA, agentes IA y dashboards a medida. Precio fijo, resultado claro, entrega en 1-2 semanas."
+           data-en="Problem: SMBs lose hours to manual work. Solution: RPA robots, AI agents, custom dashboards. Fixed price, clear outcome, delivered in 1-2 weeks.">
+          PyMEs pierden horas en trabajo manual. Solucion: RPA, agentes IA y dashboards. Precio fijo, 1-2 semanas.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="pill">Python</span><span class="pill">AI Agents</span><span class="pill">RPA</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- SERVICES (AraOps condensed) -->
-<section id="services" class="max-w-5xl mx-auto px-5 py-20">
-  <h2 class="text-3xl font-extrabold mb-3 text-center"
-      data-es="Servicios" data-en="Services">Servicios</h2>
-  <p class="text-slate-400 text-center mb-12 text-sm"
-     data-es="Precio fijo, sin sorpresas. Resultado en 1-2 semanas."
-     data-en="Fixed price, no surprises. Delivered in 1-2 weeks.">
-    Precio fijo, sin sorpresas. Resultado en 1-2 semanas.
-  </p>
+<!-- SERVICES -->
+<section id="services" class="max-w-5xl mx-auto px-5 py-16">
+  <p class="sec-label text-center" data-es="Servicios" data-en="Services">Servicios</p>
+  <h2 class="text-3xl font-black text-center mb-2"
+      data-es="Precio fijo. Resultado claro." data-en="Fixed price. Clear outcome.">Precio fijo. Resultado claro.</h2>
+  <p class="text-slate-500 text-center text-sm mb-10"
+     data-es="Sin sorpresas. Sin horas-hombre. Entrego el resultado." data-en="No surprises. No hourly billing. I deliver the outcome.">Sin sorpresas. Sin horas-hombre. Entrego el resultado.</p>
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    <div class="rounded-xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
-      <h3 class="font-bold text-sky-300 mb-2" data-es="Robot RPA / PyME" data-en="RPA Robot / SMB">Robot RPA / PyME</h3>
+    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
+      <h3 class="font-black text-sky-300 mb-1" data-es="Robot RPA" data-en="RPA Robot">Robot RPA</h3>
+      <p class="text-slate-500 text-xs mb-3" data-es="1-2 semanas" data-en="1-2 weeks">1-2 semanas</p>
       <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Automatiza un proceso repetitivo de punta a punta."
-         data-en="Automate one repetitive process end to end.">Automatiza un proceso repetitivo de punta a punta.</p>
-      <p class="text-2xl font-extrabold">$490 <span class="text-sm text-slate-500">USD</span></p>
-      <p class="text-slate-500 text-xs">1-2 semanas</p>
+         data-es="Un proceso repetitivo automatizado de punta a punta." data-en="One repetitive process automated end to end.">Un proceso repetitivo automatizado de punta a punta.</p>
+      <p class="text-2xl font-black">$490 <span class="text-sm font-normal text-slate-500">USD</span></p>
     </div>
-    <div class="rounded-xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
-      <h3 class="font-bold text-sky-300 mb-2" data-es="Dashboard en 5 dias" data-en="Dashboard in 5 days">Dashboard en 5 dias</h3>
+    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
+      <h3 class="font-black text-sky-300 mb-1" data-es="Dashboard en 5 dias" data-en="Dashboard in 5 days">Dashboard en 5 dias</h3>
+      <p class="text-slate-500 text-xs mb-3" data-es="5 dias" data-en="5 days">5 dias</p>
       <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Panel interactivo desde tus datos con KPIs y graficos."
-         data-en="Interactive panel from your data with KPIs and charts.">Panel interactivo desde tus datos.</p>
-      <p class="text-2xl font-extrabold">$420 <span class="text-sm text-slate-500">USD</span></p>
-      <p class="text-slate-500 text-xs">5 dias</p>
+         data-es="Panel interactivo desde tus datos con KPIs y graficos." data-en="Interactive panel from your data with KPIs and charts.">Panel interactivo desde tus datos.</p>
+      <p class="text-2xl font-black">$420 <span class="text-sm font-normal text-slate-500">USD</span></p>
     </div>
-    <div class="pkg-popular rounded-xl border-2 border-sky-500 bg-slate-900 p-5 flex flex-col"
-         data-label="Mas pedido">
-      <h3 class="font-bold text-sky-300 mb-2" data-es="Agente IA a medida" data-en="Custom AI Agent">Agente IA a medida</h3>
+    <div class="relative rounded-2xl border-2 border-sky-500/60 bg-slate-900 p-5 flex flex-col">
+      <span class="pkg-tag" data-es="Mas pedido" data-en="Most popular">Mas pedido</span>
+      <h3 class="font-black text-sky-300 mb-1" data-es="Agente IA a medida" data-en="Custom AI Agent">Agente IA a medida</h3>
+      <p class="text-slate-500 text-xs mb-3" data-es="2 semanas" data-en="2 weeks">2 semanas</p>
       <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Asistente LLM para tu flujo de trabajo: FAQ, doc-Q&A, copiloto interno."
-         data-en="LLM assistant for your workflow: FAQ, doc-Q&A, internal copilot.">Asistente LLM para tu flujo de trabajo.</p>
-      <p class="text-2xl font-extrabold">$720 <span class="text-sm text-slate-500">USD</span></p>
-      <p class="text-slate-500 text-xs">2 semanas</p>
+         data-es="Asistente LLM para tu flujo de trabajo: FAQ, doc-QA, copiloto interno."
+         data-en="LLM assistant for your workflow: FAQ, doc-QA, internal copilot.">Asistente LLM para tu flujo: FAQ, doc-QA, copiloto.</p>
+      <p class="text-2xl font-black">$720 <span class="text-sm font-normal text-slate-500">USD</span></p>
     </div>
-    <div class="rounded-xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
-      <h3 class="font-bold text-sky-300 mb-2" data-es="Script que te salva" data-en="The script that saves you">Script que te salva</h3>
+    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col">
+      <h3 class="font-black text-sky-300 mb-1" data-es="Script Python" data-en="Python Script">Script Python</h3>
+      <p class="text-slate-500 text-xs mb-3" data-es="3-5 dias" data-en="3-5 days">3-5 dias</p>
       <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="Herramienta Python enfocada: procesamiento, integracion API, limpieza."
-         data-en="Focused Python tool: file processing, API integration, cleanup.">Herramienta Python enfocada.</p>
-      <p class="text-2xl font-extrabold">$240 <span class="text-sm text-slate-500">USD</span></p>
-      <p class="text-slate-500 text-xs">3-5 dias</p>
+         data-es="Herramienta enfocada: procesamiento, API, limpieza de datos."
+         data-en="Focused tool: file processing, API integration, data cleanup.">Herramienta enfocada: procesamiento, API, limpieza.</p>
+      <p class="text-2xl font-black">$240 <span class="text-sm font-normal text-slate-500">USD</span></p>
     </div>
-    <div class="rounded-xl border border-slate-800 bg-slate-900 p-5 flex flex-col sm:col-span-2">
-      <h3 class="font-bold text-sky-300 mb-2" data-es="Retainer mensual" data-en="Monthly retainer">Retainer mensual</h3>
+    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col sm:col-span-2 lg:col-span-2">
+      <h3 class="font-black text-sky-300 mb-1" data-es="Retainer mensual" data-en="Monthly retainer">Retainer mensual</h3>
+      <p class="text-slate-500 text-xs mb-3" data-es="8 hs/mes + soporte" data-en="8 hrs/mo + support">8 hs/mes + soporte prioritario</p>
       <p class="text-slate-400 text-sm flex-1 mb-4"
-         data-es="~8 hs/mes de automatizaciones, mantenimiento y soporte prioritario."
-         data-en="~8 hrs/month of automations, maintenance, and priority support.">~8 hs/mes + soporte prioritario.</p>
-      <p class="text-2xl font-extrabold">$780 <span class="text-sm text-slate-500">USD/mes</span></p>
-      <p class="text-slate-500 text-xs" data-es="La opcion mas rentable a largo plazo." data-en="The most cost-effective option long-term.">La opcion mas rentable a largo plazo.</p>
+         data-es="La opcion mas rentable: automatizaciones continuas, mantenimiento y soporte prioritario."
+         data-en="The most cost-effective option: continuous automations, maintenance, and priority support.">La opcion mas rentable: automatizaciones continuas + mantenimiento.</p>
+      <p class="text-2xl font-black">$780 <span class="text-sm font-normal text-slate-500">USD/mes</span></p>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="bg-slate-900/40 border-t border-slate-800 py-20 text-center">
-  <div class="max-w-2xl mx-auto px-5">
-    <h2 class="text-3xl font-extrabold mb-4"
-        data-es="Hablemos" data-en="Let's talk">Hablemos</h2>
-    <p class="text-slate-300 mb-10 leading-relaxed"
-       data-es="Si buscas un SRE senior, quieres automatizar un proceso o tienes un proyecto interesante — escribeme. Respondo en menos de 24 horas."
-       data-en="If you're looking for a senior SRE, want to automate a process, or have an interesting project — write to me. I reply within 24 hours.">
-      Si buscas un SRE senior, quieres automatizar un proceso o tienes un proyecto interesante — escribeme.
+<section id="contact" class="bg-slate-900/30 border-t border-slate-800/60 py-20">
+  <div class="max-w-2xl mx-auto px-5 text-center">
+    <p class="sec-label" data-es="Contacto" data-en="Contact">Contacto</p>
+    <h2 class="text-3xl font-black mb-3" data-es="Hablemos" data-en="Let's talk">Hablemos</h2>
+    <p class="text-slate-400 mb-2 text-sm"
+       data-es="Si tienes un sistema critico que necesita un SRE senior, quieres automatizar un proceso, o buscas un AI-ops engineer para tu equipo en Europa — escribeme."
+       data-en="If you have a critical system that needs a senior SRE, want to automate a process, or are looking for an AI-ops engineer for your team in Europe — write to me.">
+      Sistema critico, proceso a automatizar, o un rol senior en Europa — escribeme.
     </p>
-    <div class="flex flex-wrap gap-4 justify-center">
+    <p class="text-slate-600 text-xs mb-10"
+       data-es="Respondo en menos de 24 horas." data-en="I reply within 24 hours.">Respondo en menos de 24 horas.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
       <a href="mailto:victoraranacl@gmail.com"
-         class="rounded-lg bg-sky-500 text-slate-950 font-bold px-6 py-3 hover:bg-sky-400 transition">
+         class="rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-6 py-3 transition text-sm">
         Email
       </a>
-      <a href="https://www.linkedin.com/in/victorarana/"
-         target="_blank" rel="noopener"
-         class="rounded-lg border border-slate-600 font-bold px-6 py-3 hover:bg-slate-800 transition">
+      <a href="https://www.linkedin.com/in/victorarana/" target="_blank" rel="noopener"
+         class="rounded-lg border border-slate-600 hover:border-sky-400 hover:text-sky-400 font-bold px-6 py-3 transition text-sm">
         LinkedIn
       </a>
-      <a href="https://github.com/vicarana"
-         target="_blank" rel="noopener"
-         class="rounded-lg border border-slate-600 font-bold px-6 py-3 hover:bg-slate-800 transition">
+      <a href="https://github.com/vicarana" target="_blank" rel="noopener"
+         class="rounded-lg border border-slate-600 hover:border-sky-400 hover:text-sky-400 font-bold px-6 py-3 transition text-sm">
         GitHub
       </a>
     </div>
   </div>
 </section>
 
-<footer class="border-t border-slate-800 text-center text-slate-500 text-sm py-8">
-  Victor Arana &mdash; <span id="yr"></span> &mdash;
-  <a href="https://github.com/vicarana" class="hover:text-sky-400 transition">github.com/vicarana</a>
+<footer class="border-t border-slate-800/40 text-center py-8">
+  <p class="text-slate-600 text-xs">
+    Victor Arana &mdash; <span id="yr"></span> &mdash;
+    <a href="https://github.com/vicarana" class="hover:text-sky-400 transition">github.com/vicarana</a>
+    &mdash; UTC-4
+  </p>
 </footer>
 
 <script>
-document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('yr').textContent=new Date().getFullYear();
 let lang='es';
 const btn=document.getElementById('langBtn');
 function setLang(l){
