@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="space">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Victor Arana. SRE Lead keeping 400+ stores running. Building AI ops tools. Open to EU relocation and remote senior roles."/>
+<meta property="og:title" content="Victor Arana / SRE / Platform / AI"/>
+<meta property="og:url" content="https://vicarana.github.io"/>
+<title>Victor Arana / SRE / Platform / AI</title>
+<style>
+/* ── THEME TOKENS ─────────────────────────────────────────── */
+:root,[data-theme=space]{
+  --bg:#07090f;--sur:#0d1117;--card:#111827;--card2:#161f2e;
+  --border:#1e293b;--border2:#2d3f55;
+  --ink:#e2e8f0;--dim:#64748b;--muted:#334155;
+  --a1:#38bdf8;--a2:#818cf8;--a3:#34d399;
+  --hi:#22c55e;--hi-bg:#052e16;--hi-bd:#166534;
+  --grad:linear-gradient(90deg,#38bdf8,#818cf8,#34d399);
+  --glow:rgba(56,189,248,.12);
+  --tl-dot:#38bdf8;--tl-line:#1e293b;
+  --sec-lbl:#475569;--pkg-bg:#38bdf8;--pkg-ink:#07090f;
+}
+[data-theme=samurai]{
+  --bg:#08050a;--sur:#100b0d;--card:#160e10;--card2:#1e1214;
+  --border:#3d1a1e;--border2:#5c2428;
+  --ink:#f0e6d3;--dim:#9b7b6a;--muted:#4a2d2a;
+  --a1:#c9a227;--a2:#d4522a;--a3:#e8c870;
+  --hi:#c9a227;--hi-bg:#1a1208;--hi-bd:#7a5c10;
+  --grad:linear-gradient(90deg,#c9a227,#d4522a,#e8c870);
+  --glow:rgba(201,162,39,.12);
+  --tl-dot:#c9a227;--tl-line:#3d1a1e;
+  --sec-lbl:#7a5040;--pkg-bg:#c9a227;--pkg-ink:#08050a;
+}
+[data-theme=ai]{
+  --bg:#04020d;--sur:#08041a;--card:#0d071f;--card2:#120a28;
+  --border:#2d1f5e;--border2:#4a35a0;
+  --ink:#e0d7ff;--dim:#7c6ab8;--muted:#2d1f5e;
+  --a1:#06b6d4;--a2:#7c3aed;--a3:#10b981;
+  --hi:#06b6d4;--hi-bg:#041018;--hi-bd:#0e4a56;
+  --grad:linear-gradient(90deg,#06b6d4,#7c3aed,#10b981);
+  --glow:rgba(6,182,212,.15);
+  --tl-dot:#7c3aed;--tl-line:#2d1f5e;
+  --sec-lbl:#4a35a0;--pkg-bg:#7c3aed;--pkg-ink:#e0d7ff;
+}
+
+/* ── RESET + BASE ─────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  line-height:1.6;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* ── LAYOUT ───────────────────────────────────────────────── */
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-bio{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+@media(max-width:640px){
+  .grid2,.grid3,.grid4,.grid-bio{grid-template-columns:1fr}
+  .span2{grid-column:span 1!important}
+}
+@media(min-width:641px) and (max-width:900px){
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .grid3{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── NAV ──────────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;max-width:1000px;margin:0 auto}
+.logo{font-weight:900;font-size:1.1rem;letter-spacing:-.03em;color:var(--ink)}
+.logo span{color:var(--a1)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:.85rem;color:var(--dim);font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--a1);transition:width .25s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-btns{display:flex;gap:8px;align-items:center}
+.nav-btns a{font-size:.8rem;font-weight:700;color:var(--dim);transition:color .2s}
+.nav-btns a:hover{color:var(--ink)}
+.btn-sm{border:1px solid var(--border2);border-radius:6px;padding:4px 10px;
+  font-size:.75rem;font-weight:800;background:transparent;color:var(--dim);
+  cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-sm:hover{background:var(--card);color:var(--ink)}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero{position:relative;overflow:hidden;text-align:center;padding:100px 20px 80px}
+.glow1,.glow2{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);opacity:.15}
+.glow1{width:400px;height:400px;top:-80px;left:15%;background:var(--a1)}
+.glow2{width:280px;height:280px;bottom:0;right:20%;background:var(--a2)}
+.avail{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;
+  border-radius:999px;border:1px solid var(--hi-bd);background:var(--hi-bg);
+  color:var(--hi);font-size:.75rem;font-weight:800;letter-spacing:.04em;margin-bottom:24px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--hi);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-name{font-size:clamp(3rem,9vw,5.5rem);font-weight:900;line-height:1;
+  letter-spacing:-.04em;margin-bottom:20px;background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.hero-sub{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--ink);
+  margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero-p{font-size:.95rem;color:var(--dim);max-width:600px;margin:0 auto 36px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:24px}
+.btn-pri{background:var(--a1);color:var(--bg);font-weight:900;font-size:.85rem;
+  padding:13px 28px;border-radius:10px;border:none;cursor:pointer;transition:opacity .2s;font-family:inherit}
+.btn-pri:hover{opacity:.85}
+.btn-sec{border:1px solid var(--border2);color:var(--dim);font-weight:700;font-size:.85rem;
+  padding:13px 28px;border-radius:10px;background:transparent;cursor:pointer;
+  transition:all .2s;font-family:inherit}
+.btn-sec:hover{border-color:var(--a1);color:var(--a1)}
+.hero-foot{font-size:.7rem;color:var(--muted)}
+
+/* ── IMPACT ───────────────────────────────────────────────── */
+.impact{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--sur) 50%,transparent);padding:56px 0}
+.sec-lbl{font-size:.65rem;font-weight:800;letter-spacing:.14em;color:var(--sec-lbl);
+  text-transform:uppercase;margin-bottom:14px;text-align:center}
+.stat-n{font-size:2.5rem;font-weight:900;line-height:1;margin-bottom:6px}
+.stat-l{font-size:.8rem;color:var(--dim)}
+.stat-box{text-align:center;padding:16px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:32px}
+.pill{display:inline-block;padding:4px 14px;border-radius:999px;font-size:.72rem;
+  font-weight:700;background:var(--card);border:1px solid var(--border2);color:var(--a1)}
+
+/* ── BIO + TIMELINE ───────────────────────────────────────── */
+.bio-section{padding:64px 0}
+.bio-p{color:var(--dim);line-height:1.8;margin-bottom:16px;font-size:.95rem}
+.tl-wrap{display:flex;flex-direction:column;gap:24px}
+.tl-item{position:relative;padding-left:22px}
+.tl-item::before{content:'';position:absolute;left:0;top:7px;width:9px;height:9px;
+  border-radius:50%;background:var(--tl-dot);border:2px solid var(--bg)}
+.tl-item::after{content:'';position:absolute;left:4px;top:16px;width:2px;
+  height:calc(100% + 16px);background:var(--tl-line)}
+.tl-item:last-child::after{display:none}
+.tl-role{font-weight:800;color:var(--ink);font-size:.95rem}
+.tl-date{font-size:.72rem;font-weight:700;color:var(--a1);margin:3px 0 6px}
+.tl-desc{font-size:.82rem;color:var(--dim);line-height:1.6}
+
+/* ── CARDS (projects + services) ─────────────────────────── */
+.cards-section{background:color-mix(in srgb,var(--sur) 40%,transparent);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0}
+.card-el{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:24px;display:flex;flex-direction:column;
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.card-el:hover{border-color:var(--a1);transform:translateY(-3px);box-shadow:0 10px 40px var(--glow)}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.badge{font-size:.65rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;border:1px solid currentColor;opacity:.9}
+.badge-sky{color:#38bdf8;border-color:#1e3a5f;background:#051828}
+.badge-grn{color:#34d399;border-color:#065f46;background:#022a20}
+.badge-amb{color:#fbbf24;border-color:#78350f;background:#1a0e02}
+.badge-vio{color:#a78bfa;border-color:#4c1d95;background:#13082a}
+.card-repo{font-size:.7rem;color:var(--muted)}
+.card-h{font-weight:900;font-size:1rem;color:var(--ink);margin-bottom:8px}
+.card-p{font-size:.82rem;color:var(--dim);line-height:1.6;flex:1;margin-bottom:16px}
+.card-pills{display:flex;flex-wrap:wrap;gap:4px}
+.svc-section{padding:64px 0}
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:22px;display:flex;flex-direction:column;position:relative}
+.svc-popular::before{content:attr(data-lbl);position:absolute;top:-12px;left:18px;
+  background:var(--pkg-bg);color:var(--pkg-ink);font-size:.65rem;font-weight:900;
+  padding:3px 12px;border-radius:999px;letter-spacing:.06em}
+.svc-card.svc-popular{border-color:var(--a1)}
+.svc-h{font-weight:900;color:var(--a1);font-size:.95rem;margin-bottom:3px}
+.svc-meta{font-size:.7rem;color:var(--muted);margin-bottom:10px}
+.svc-p{font-size:.82rem;color:var(--dim);flex:1;margin-bottom:16px;line-height:1.5}
+.svc-price{font-size:1.4rem;font-weight:900;color:var(--ink)}
+.svc-price span{font-size:.8rem;font-weight:400;color:var(--muted)}
+.span2{grid-column:span 2}
+
+/* ── CONTACT ──────────────────────────────────────────────── */
+.contact{background:color-mix(in srgb,var(--sur) 40%,transparent);
+  border-top:1px solid var(--border);padding:80px 0;text-align:center}
+.contact-h{font-size:2rem;font-weight:900;margin-bottom:12px}
+.contact-p{font-size:.9rem;color:var(--dim);max-width:480px;margin:0 auto 8px}
+.contact-foot{font-size:.72rem;color:var(--muted);margin-bottom:36px}
+.btn-email{background:var(--a1);color:var(--bg);font-weight:900;
+  padding:13px 24px;border-radius:10px;font-size:.85rem;transition:opacity .2s}
+.btn-email:hover{opacity:.85}
+.btn-outline{border:1px solid var(--border2);font-weight:700;
+  padding:13px 24px;border-radius:10px;font-size:.85rem;color:var(--dim);
+  transition:all .2s}
+.btn-outline:hover{border-color:var(--a1);color:var(--a1)}
+.contact-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer{border-top:1px solid var(--border);text-align:center;padding:28px 20px;
+  font-size:.72rem;color:var(--muted)}
+footer a:hover{color:var(--a1)}
+
+/* ── SECTION HEADINGS ─────────────────────────────────────── */
+.sec-h{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;text-align:center;margin-bottom:8px}
+.sec-sub{font-size:.85rem;color:var(--dim);text-align:center;margin-bottom:40px}
+
+/* ── THEME INDICATOR (samurai divider) ───────────────────── */
+[data-theme=samurai] .hero::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--a1),transparent)}
+[data-theme=samurai] .sec-lbl{letter-spacing:.2em}
+[data-theme=ai] .pill{font-family:'Courier New',monospace;letter-spacing:.05em}
+[data-theme=ai] .logo{font-family:'Courier New',monospace}
+
+/* ── TRANSITIONS & ANIMATIONS ────────────────────────────── */
+/* Gradient pulse on hero name */
+.hero-name{background-size:200% auto;animation:gshift 5s linear infinite}
+@keyframes gshift{0%{background-position:0% center}100%{background-position:200% center}}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}
+.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+
+/* Theme curtain */
+#curtain{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:0;
+  will-change:opacity,transform,clip-path}
+.c-samurai{animation:cs .6s cubic-bezier(.7,0,.3,1) forwards;
+  background:linear-gradient(135deg,#c9a227,#d4522a,#08050a)}
+.c-ai{animation:ca .5s steps(7,end) forwards;
+  background:linear-gradient(45deg,#7c3aed,#06b6d4)}
+.c-space{animation:cw .55s ease-in-out forwards;
+  background:radial-gradient(circle at 50% 50%,#38bdf8,#07090f 70%)}
+
+@keyframes cs{
+  0%  {opacity:0;clip-path:polygon(50% 0,52% 0,52% 100%,50% 100%)}
+  30% {opacity:1;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  70% {opacity:1;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  100%{opacity:0;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+}
+@keyframes ca{
+  0%,100%{opacity:0}
+  7%,21%,35%,49%,63%,77%,91%{opacity:.9;transform:skewX(-1.5deg) translateX(3px)}
+  14%,28%,42%,56%,70%,84%{opacity:.1;transform:skewX(1deg) translateX(-2px)}
+}
+@keyframes cw{
+  0%  {opacity:0;transform:scale(3);border-radius:50%}
+  40% {opacity:.75;transform:scale(1);border-radius:0}
+  100%{opacity:0;transform:scale(1)}
+}
+
+/* Button + card micro-interactions */
+.btn-pri:active,.btn-email:active{transform:scale(.96)}
+.card-el,.svc-card{transform:translateZ(0)}
+.stat-n{transition:color .5s,transform .4s}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <span class="logo">ara<span>ops</span></span>
+    <nav class="nav-links">
+      <a href="#impact"   data-es="Impacto"   data-en="Impact">Impact</a>
+      <a href="#projects" data-es="Proyectos" data-en="Projects">Projects</a>
+      <a href="#services" data-es="Servicios" data-en="Services">Services</a>
+      <a href="#contact"  data-es="Contacto"  data-en="Contact">Contact</a>
+    </nav>
+    <div class="nav-btns">
+      <a href="https://github.com/vicarana" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn-sm" id="themeBtn" aria-label="Change theme" title="Change theme">Space</button>
+      <button class="btn-sm" id="langBtn"  aria-label="Switch language">ES</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="glow1"></div><div class="glow2"></div>
+  <div style="position:relative">
+    <div class="avail">
+      <span class="dot"></span>
+      <span data-es="Disponible para EU y roles remotos senior" data-en="Open to EU relocation and remote senior roles">Open to EU relocation and remote senior roles</span>
+    </div>
+    <h1 class="hero-name">Victor Arana</h1>
+    <h2 class="hero-sub"
+       data-es="SRE y Arquitecto de Seguridad. Fortune #1 Retail. Pagos. IA."
+       data-en="SRE and Security Architect. Fortune #1 Retail. Payments. AI.">
+      SRE and Security Architect. Fortune #1 Retail. Payments. AI.
+    </h2>
+    <p class="hero-p"
+       data-es="Construyo y opero infraestructura resiliente, segura y escalable para el retailer #1 del mundo. Arquitectura de pagos PCI-DSS, despliegue de IA a escala nacional, gobernanza de cambios en produccion para 400+ tiendas. Busco rol senior ejecutivo en Europa."
+       data-en="Building and operating resilient, secure and scalable infrastructure for the world's #1 retailer. PCI-DSS payment architecture, national-scale AI deployment, production change governance across 400+ stores. Targeting executive-level roles in Europe.">
+      Building and operating resilient, secure and scalable infrastructure for the world's #1 retailer. PCI-DSS payment architecture, national-scale AI deployment, production change governance across 400+ stores. Targeting executive-level roles in Europe.
+    </p>
+    <div class="cta-row">
+      <a href="#projects" class="btn-pri" data-es="Ver mi trabajo" data-en="See my work">See my work</a>
+      <a href="#contact"  class="btn-sec" data-es="Hablemos"       data-en="Let's talk">Let's talk</a>
+    </div>
+    <p class="hero-foot">UTC-4 &nbsp;|&nbsp; 3h overlap with EU &nbsp;|&nbsp; English / Spanish</p>
+  </div>
+</section>
+
+<section class="impact" id="impact">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Lo que he entregado" data-en="What I've delivered">What I've delivered</p>
+    <div class="grid4">
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a1)">400+</div>
+        <div class="stat-l" data-es="tiendas operadas sin caidas" data-en="stores kept running">stores kept running</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a2)">99%</div>
+        <div class="stat-l" data-es="reduccion de downtime en eventos pico" data-en="reduction in peak-event downtime">reduction in peak-event downtime</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a3)">+30%</div>
+        <div class="stat-l" data-es="eficiencia de plataforma via K8s multi-cloud" data-en="platform efficiency via multi-cloud K8s">platform efficiency via multi-cloud K8s</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-n" style="color:var(--a1)">1,000+</div>
+        <div class="stat-l" data-es="terminales PoS operados" data-en="PoS terminals operated">PoS terminals operated</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill">Kubernetes</span><span class="pill">OpenShift</span>
+      <span class="pill">PCI-DSS</span><span class="pill">Terraform</span>
+      <span class="pill">Kafka</span><span class="pill">Python</span>
+      <span class="pill">AWS</span><span class="pill">Azure</span>
+      <span class="pill">GCP</span><span class="pill">DevSecOps</span>
+      <span class="pill">Grafana</span><span class="pill">GitOps</span>
+    </div>
+  </div>
+</section>
+
+<section class="bio-section">
+  <div class="wrap">
+    <div class="grid-bio">
+      <div>
+        <p class="sec-lbl" data-es="Quien soy" data-en="Who I am">Who I am</p>
+        <p class="bio-p"
+           data-es="Habilito los programas de infraestructura y seguridad que mantienen en operacion las 400+ tiendas y 1,000+ terminales de pago de Walmart Chile — y construyo la plataforma que define como operaran despues. Eso significa redisenar el stack tecnologico de tienda desde cero, construir la arquitectura de pago PCI-DSS que permite conectar nuevos proveedores a nuestra red, y sentar las bases de seguridad y gobernanza que hacen que las operaciones potenciadas por IA sean desplegables en un entorno regulado."
+           data-en="I enable the infrastructure and security programs that keep Walmart Chile's 400+ stores and 1,000+ payment terminals running — and build the platform that defines how they'll operate next. That means redesigning the front store tech stack from the ground up, building the PCI-DSS compliant payment architecture that lets new providers plug into our network, and laying the security and governance groundwork that makes AI-powered store operations actually deployable in a regulated environment.">
+          I enable the infrastructure and security programs that keep Walmart Chile's 400+ stores and 1,000+ payment terminals running — and build the platform that defines how they'll operate next. That means redesigning the front store tech stack from the ground up, building the PCI-DSS compliant payment architecture that lets new providers plug into our network, and laying the security and governance groundwork that makes AI-powered store operations actually deployable in a regulated environment.
+        </p>
+        <p class="bio-p" style="font-size:.85rem"
+           data-es="Los resultados: 99% menos downtime en Cyber Monday y eventos pico, 30% de mejora en eficiencia de plataforma via Kubernetes multi-cloud en Azure y GCP, 40% mas rapido en despliegues via GitOps, y federacion de identidad Zero Trust en toda la red corporativa. Antes de Walmart fui CTO tres veces, en salud, medios y tecnologia. Busco roles de CTO, Head of AI o Platform donde las decisiones tecnicas realmente muevan el negocio."
+           data-en="The work shows up in the numbers: 99% less downtime during Cyber Monday and peak events, 30% platform efficiency gains through multi-cloud Kubernetes across Azure and GCP, 40% faster deployments via GitOps, and enterprise-wide Zero Trust identity federation. Before Walmart I was CTO three times — for healthcare, media and tech. I'm most interested in CTO or Head of AI or Platform roles where the technical decisions actually move the business.">
+          The work shows up in the numbers: 99% less downtime during Cyber Monday and peak events, 30% platform efficiency gains through multi-cloud Kubernetes across Azure and GCP, 40% faster deployments via GitOps, and enterprise-wide Zero Trust identity federation. Before Walmart I was CTO three times — for healthcare, media and tech. I'm most interested in CTO or Head of AI or Platform roles where the technical decisions actually move the business.
+        </p>
+        <p class="bio-p" style="font-size:.82rem;color:var(--muted);margin-top:20px"
+           data-es="Cada noche le escribo a mi hija un nuevo cuento ilustrado con IA, impreso para que lo pueda sostener. Cada uno le ensena en silencio un valor familiar que quiero que lleve siempre consigo."
+           data-en="Every night I write my daughter a new bedtime story illustrated with AI, printed so she can hold it. Each one quietly teaching her a core family value I want her to carry forever.">
+          Every night I write my daughter a new bedtime story illustrated with AI, printed so she can hold it. Each one quietly teaching her a core family value I want her to carry forever.
+        </p>
+      </div>
+      <div>
+        <p class="sec-lbl" data-es="Trayectoria" data-en="Experience">Experience</p>
+        <div class="tl-wrap">
+          <div class="tl-item">
+            <div class="tl-role" data-es="SRE y Arquitecto de Seguridad" data-en="SRE and Security Architect">SRE and Security Architect</div>
+            <div class="tl-desc"
+                 data-es="Walmart Chile (Fortune #1). Rediseno del stack tecnologico de tienda en 400+ locales. Arquitectura de pago PCI-DSS que permite conectar nuevos proveedores a la red. Bases de seguridad y gobernanza para operaciones de tienda potenciadas por IA en entorno regulado. 99% menos downtime en Cyber Monday, 30% mejora de eficiencia de plataforma, 40% despliegues mas rapidos via GitOps, federacion de identidad Zero Trust en toda la red corporativa."
+                 data-en="Walmart Chile (Fortune #1). Redesigned the front store tech stack across 400+ stores. Built the PCI-DSS compliant payment architecture that lets new providers plug into our network. Laid the security and governance groundwork for AI-powered store operations in a regulated environment. 99% less downtime on peak events, 30% platform efficiency gains, 40% faster deployments via GitOps, Zero Trust identity federation across the corporate network.">
+              Walmart Chile (Fortune #1). Redesigned the front store tech stack across 400+ stores. Built the PCI-DSS compliant payment architecture that lets new providers plug into our network. Laid the security and governance groundwork for AI-powered store operations in a regulated environment.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-role" data-es="Cloud Architect, SR Consultores" data-en="Cloud Architect, SR Consultores">Cloud Architect, SR Consultores</div>
+            <div class="tl-desc"
+                 data-es="Pipelines CI/CD que redujeron ciclos de despliegue un 40%. Migraciones cloud sin downtime entre AWS, Azure y GCP. Automatizacion con Terraform y Ansible."
+                 data-en="CI/CD pipelines that cut deployment cycles by 40%. Zero-downtime cloud migrations across AWS, Azure and GCP. Infrastructure automation with Terraform and Ansible.">
+              CI/CD pipelines that cut deployment cycles by 40%. Zero-downtime cloud migrations across AWS, Azure and GCP. Infrastructure automation with Terraform and Ansible.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-role" data-es="CTO x3 — Salud, Medios y Tecnologia" data-en="CTO x3 — Healthcare, Media and Tech">CTO x3 — Healthcare, Media and Tech</div>
+            <div class="tl-desc"
+                 data-es="Fui CTO tres veces. Se como se ve cuando la plataforma es el cuello de botella y cuando es la ventaja. He dedicado la mayor parte de mi carrera a asegurarme de que sea lo segundo."
+                 data-en="CTO three times across healthcare, media and tech. I know what it looks like when the platform is the bottleneck and when it's the advantage. I've spent most of my career making sure it's the latter.">
+              CTO three times across healthcare, media and tech. I know what it looks like when the platform is the bottleneck and when it's the advantage. I've spent most of my career making sure it's the latter.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cards-section" id="projects">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Proyectos" data-en="Projects">Proyectos</p>
+    <h2 class="sec-h" data-es="Lo que he construido" data-en="What I've shipped">What I've shipped</h2>
+    <p class="sec-sub" data-es="Todo publico. Todo en uso." data-en="All public. All in use.">All public. All in use.</p>
+    <div class="grid2">
+      <a href="https://vicarana.github.io/career-radar/" target="_blank" rel="noopener" class="card-el">
+        <div class="card-top"><span class="badge badge-sky">PWA</span><span class="card-repo">career-radar</span></div>
+        <div class="card-h">Career Radar</div>
+        <p class="card-p"
+           data-es="Construido para cortar el ruido de los job boards. Agrega y califica roles SRE/DevOps de A a F segun match real. Corre en GitHub Actions. Sin servidor, sin costo."
+           data-en="Built to cut through job board noise. Aggregates and grades SRE and DevOps roles A to F based on real skill match. Runs on GitHub Actions with no server and no cost.">
+          Built to cut through job board noise. Aggregates and grades SRE and DevOps roles A to F based on real skill match. Runs on GitHub Actions with no server and no cost.
+        </p>
+        <div class="card-pills"><span class="pill">Python</span><span class="pill">PWA</span><span class="pill">GH Actions</span></div>
+      </a>
+      <a href="https://vicarana.github.io/wm-mobility/" target="_blank" rel="noopener" class="card-el">
+        <div class="card-top"><span class="badge badge-grn">OSS · MIT</span><span class="card-repo">wm-mobility</span></div>
+        <div class="card-h">Mobility Radar</div>
+        <p class="card-p"
+           data-es="Rastrear visas y rutas de reubicacion es un caos. Esto lo convierte en un dashboard. Open source, configurable por JSON, funciona offline."
+           data-en="Tracking visa routes and relocation options is a mess. This turns it into a dashboard. Open source, JSON-configurable, works offline.">
+          Tracking visa routes and relocation options is a mess. This turns it into a dashboard. Open source, JSON-configurable, works offline.
+        </p>
+        <div class="card-pills"><span class="pill">Vanilla JS</span><span class="pill">PWA</span><span class="pill">MIT</span></div>
+      </a>
+      <div class="card-el">
+        <div class="card-top"><span class="badge badge-amb">Enterprise</span><span class="card-repo">internal</span></div>
+        <div class="card-h" data-es="Plataforma IA para 400+ Tiendas" data-en="AI Platform for 400+ Stores">AI Platform for 400+ Stores</div>
+        <p class="card-p"
+           data-es="400+ tiendas, 23 dominios de infraestructura, un solo equipo. Tres agentes IA especializados cubriendo ops, riesgo y experiencia del cliente. Un contexto compartido."
+           data-en="400+ stores across 23 infrastructure domains, one team. Three specialized AI agents covering ops, risk and customer experience. One shared knowledge base, always in sync.">
+          400+ stores across 23 infrastructure domains, one team. Three specialized AI agents covering ops, risk and customer experience. One shared knowledge base, always in sync.
+        </p>
+        <div class="card-pills"><span class="pill">FastAPI</span><span class="pill">Python</span><span class="pill">AI Agents</span></div>
+      </div>
+      <a href="https://vicarana.github.io/AraOps/" target="_blank" rel="noopener" class="card-el" style="border-color:var(--border2)">
+        <div class="card-top"><span class="badge badge-vio">Servicios</span><span class="card-repo">araops</span></div>
+        <div class="card-h">AraOps</div>
+        <p class="card-p"
+           data-es="Automatizacion e IA para equipos que no tienen tiempo para el trabajo repetitivo. Entregado en semanas, no meses."
+           data-en="Automation and AI services for teams drowning in repetitive work. RPA, AI agents and dashboards. Delivered in weeks, not months.">
+          Automation and AI services for teams drowning in repetitive work. RPA, AI agents and dashboards. Delivered in weeks, not months.
+        </p>
+        <div class="card-pills"><span class="pill">Python</span><span class="pill">AI Agents</span><span class="pill">RPA</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="svc-section" id="services">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Servicios" data-en="Services">Servicios</p>
+    <h2 class="sec-h" data-es="Vos defines el alcance. Yo lo entrego." data-en="You scope it. I ship it.">You scope it. I ship it.</h2>
+    <p class="sec-sub" data-es="Precio fijo. Plazos reales. Sin vueltas." data-en="Flat fees. Real timelines. No back and forth.">Flat fees. Real timelines. No back and forth.</p>
+    <div class="grid3">
+      <div class="svc-card">
+        <div class="svc-h" data-es="Robot RPA" data-en="RPA Robot">Robot RPA</div>
+        <div class="svc-meta" data-es="1-2 semanas" data-en="1-2 weeks">1-2 semanas</div>
+        <p class="svc-p" data-es="Un proceso repetitivo automatizado de punta a punta. Te entrego el flujo funcionando y te explico como mantenerlo." data-en="One repetitive process fully automated. You get a working flow and a walkthrough so your team can own it.">One repetitive process fully automated. You get a working flow and a walkthrough so your team can own it.</p>
+        <div class="svc-price">$490 <span>USD</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-h" data-es="Dashboard en 5 dias" data-en="Dashboard in 5 days">Dashboard en 5 dias</div>
+        <div class="svc-meta" data-es="5 dias" data-en="5 days">5 dias</div>
+        <p class="svc-p" data-es="Un panel con tus KPIs, graficos y actualizacion automatica. Desde tus datos existentes, sin mover nada." data-en="Your KPIs and charts in one place, auto-refreshing from your existing data. No migration needed.">Your KPIs and charts in one place, auto-refreshing from your existing data. No migration needed.</p>
+        <div class="svc-price">$420 <span>USD</span></div>
+      </div>
+      <div class="svc-card svc-popular" data-lbl="Mas pedido">
+        <div class="svc-h" data-es="Agente IA a medida" data-en="Custom AI Agent">Agente IA a medida</div>
+        <div class="svc-meta" data-es="2 semanas" data-en="2 weeks">2 semanas</div>
+        <p class="svc-p" data-es="Un agente de IA para tu flujo de trabajo: preguntas frecuentes, consultas sobre documentos o un copiloto interno para tu equipo." data-en="An AI agent wired into your workflow. Handles FAQs, answers questions from your documents, or acts as an internal copilot for your team.">An AI agent wired into your workflow. Handles FAQs, answers questions from your documents, or acts as an internal copilot for your team.</p>
+        <div class="svc-price">$720 <span>USD</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-h" data-es="Script Python" data-en="Python Script">Script Python</div>
+        <div class="svc-meta" data-es="3-5 dias" data-en="3-5 days">3-5 dias</div>
+        <p class="svc-p" data-es="Una herramienta Python para un problema puntual: procesamiento de archivos, integracion de APIs o limpieza de datos." data-en="A Python tool built for one specific problem. File processing, API integration or data cleanup. Small scope, big time savings.">A Python tool built for one specific problem. File processing, API integration or data cleanup. Small scope, big time savings.</p>
+        <div class="svc-price">$240 <span>USD</span></div>
+      </div>
+      <div class="svc-card span2">
+        <div class="svc-h" data-es="Retainer mensual" data-en="Monthly retainer">Retainer mensual</div>
+        <div class="svc-meta" data-es="8 hs/mes + soporte" data-en="8 hrs/mo + support">8 hs/mes + soporte prioritario</div>
+        <p class="svc-p" data-es="La mejor opcion a largo plazo: automatizaciones continuas, mantenimiento y soporte prioritario incluidos." data-en="The best long-term option. Continuous automations, maintenance and priority support included. One flat monthly fee.">The best long-term option. Continuous automations, maintenance and priority support included. One flat monthly fee.</p>
+        <div class="svc-price">$780 <span>USD/mes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="sec-lbl" data-es="Contacto" data-en="Contact">Contacto</p>
+    <h2 class="contact-h" data-es="Hablemos" data-en="Let's talk">Let's talk</h2>
+    <p class="contact-p"
+       data-es="Tienes un sistema critico, un proceso que quieres automatizar, o un rol senior en Europa que cubrir? Escribeme."
+       data-en="Got a critical system, a process you want automated, or a senior EU role to fill? Write to me.">
+      Got a critical system, a process you want automated, or a senior EU role to fill? Write to me.
+    </p>
+    <p class="contact-foot" data-es="Respondo en menos de 24 horas." data-en="I reply within 24 hours.">I reply within 24 hours.</p>
+    <div class="contact-btns">
+      <a href="mailto:victoraranacl@gmail.com" class="btn-email">Email</a>
+      <a href="https://www.linkedin.com/in/victor-arana-5a101721/" target="_blank" rel="noopener" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/vicarana" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Victor Arana &nbsp;|&nbsp; <span id="yr"></span> &nbsp;|&nbsp;
+  <a href="https://github.com/vicarana">github.com/vicarana</a> &nbsp;|&nbsp; UTC-4</p>
+</footer>
+
+<!-- Theme transition curtain — build trigger -->
+<div id="curtain"></div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── Language ── */
+let lang = 'en';
+const langBtn = document.getElementById('langBtn');
+function setLang(l) {
+  lang = l; document.documentElement.lang = l;
+  langBtn.textContent = l === 'en' ? 'ES' : 'EN';
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const t = el.getAttribute('data-' + l);
+    if (t !== null) el.textContent = t;
+  });
+}
+langBtn.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
+setLang('en');
+
+/* ── Theme + cinematic curtain ── */
+const themes   = ['space','samurai','ai'];
+const labels   = ['Space','Samurai','AI'];
+const curtains = ['c-space','c-samurai','c-ai'];
+const themeBtn = document.getElementById('themeBtn');
+const curtain  = document.getElementById('curtain');
+let ti = 0, animating = false;
+
+function applyTheme(i, animate) {
+  const cl = curtains[i];
+  function commit() {
+    document.documentElement.setAttribute('data-theme', themes[i]);
+    themeBtn.textContent = labels[i];
+    try { localStorage.setItem('va_theme', i); } catch(e){}
+  }
+  if (!animate) { commit(); return; }
+  if (animating) return;
+  animating = true;
+  curtain.className = cl;
+  // commit theme at peak of curtain (30% through 600ms)
+  setTimeout(commit, 180);
+  setTimeout(() => { curtain.className = ''; animating = false; }, 650);
+}
+
+try { ti = parseInt(localStorage.getItem('va_theme') || '0'); } catch(e){}
+applyTheme(ti, false);
+themeBtn.addEventListener('click', () => {
+  ti = (ti + 1) % themes.length;
+  applyTheme(ti, true);
+});
+
+/* ── Scroll reveal (Intersection Observer) ── */
+const revealTargets = [
+  ...document.querySelectorAll('.stat-box'),
+  ...document.querySelectorAll('.card-el'),
+  ...document.querySelectorAll('.tl-item'),
+  ...document.querySelectorAll('.svc-card'),
+  ...document.querySelectorAll('.bio-p'),
+];
+revealTargets.forEach((el, i) => {
+  el.classList.add('reveal');
+  // stagger siblings within same parent
+  const siblings = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+  const idx = siblings.indexOf(el);
+  if (idx > 0 && idx < 4) el.classList.add('d' + idx);
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revealTargets.forEach(el => io.observe(el));
+
+/* ── Stat count-up ── */
+function countUp(el, target, duration) {
+  const isPlus = String(target).includes('+');
+  const num = parseInt(target);
+  const start = performance.now();
+  function frame(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(ease * num) + (isPlus ? '+' : '');
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const statEls = document.querySelectorAll('.stat-n');
+const statIO  = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const raw = e.target.textContent.trim();
+      countUp(e.target, raw, 1200);
+      statIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+statEls.forEach(el => statIO.observe(el));
+</script>
+</body>
+</html>
