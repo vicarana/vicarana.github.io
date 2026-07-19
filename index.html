@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="space">
+<html lang="en" data-theme="nordic">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -41,6 +41,17 @@
   --glow:rgba(6,182,212,.15);
   --tl-dot:#7c3aed;--tl-line:#2d1f5e;
   --sec-lbl:#4a35a0;--pkg-bg:#7c3aed;--pkg-ink:#e0d7ff;
+}
+[data-theme=nordic]{
+  --bg:#080e1c;--sur:#0c1526;--card:#101d33;--card2:#152540;
+  --border:#1a2f50;--border2:#234070;
+  --ink:#e2f0ff;--dim:#7ea8c4;--muted:#243550;
+  --a1:#2dd4bf;--a2:#818cf8;--a3:#f472b6;
+  --hi:#2dd4bf;--hi-bg:#03201c;--hi-bd:#0a5c52;
+  --grad:linear-gradient(90deg,#2dd4bf,#818cf8,#f472b6,#2dd4bf);
+  --glow:rgba(45,212,191,.18);
+  --tl-dot:#2dd4bf;--tl-line:#1a2f50;
+  --sec-lbl:#2a5070;--pkg-bg:#2dd4bf;--pkg-ink:#080e1c;
 }
 
 /* ── RESET + BASE ─────────────────────────────────────────── */
@@ -196,6 +207,27 @@ footer a:hover{color:var(--a1)}
 .sec-h{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;text-align:center;margin-bottom:8px}
 .sec-sub{font-size:.85rem;color:var(--dim);text-align:center;margin-bottom:40px}
 
+/* ── NORDIC AURORA ───────────────────────────────────────── */
+[data-theme=nordic] body{
+  background-image:
+    radial-gradient(ellipse 80% 40% at 20% 0%,rgba(45,212,191,.1) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 30% at 80% 10%,rgba(129,140,248,.12) 0%,transparent 50%),
+    radial-gradient(ellipse 40% 20% at 50% 5%,rgba(244,114,182,.08) 0%,transparent 40%);
+}
+[data-theme=nordic] .hero::before{
+  content:'';position:absolute;top:0;left:-20%;right:-20%;height:150px;
+  pointer-events:none;z-index:0;
+  background:linear-gradient(90deg,
+    transparent 0%,rgba(45,212,191,.07) 20%,rgba(129,140,248,.1) 40%,
+    rgba(244,114,182,.08) 60%,rgba(45,212,191,.07) 80%,transparent 100%);
+  animation:aurora-shift 8s ease-in-out infinite alternate;
+}
+@keyframes aurora-shift{
+  0%  {opacity:.6;transform:translateX(-10%) scaleY(1)}
+  50% {opacity:1; transform:translateX(5%)  scaleY(1.2)}
+  100%{opacity:.7;transform:translateX(10%) scaleY(.9)}
+}
+
 /* ── THEME INDICATOR (samurai divider) ───────────────────── */
 [data-theme=samurai] .hero::before{
   content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
@@ -222,9 +254,17 @@ footer a:hover{color:var(--a1)}
   background:linear-gradient(135deg,#c9a227,#d4522a,#08050a)}
 .c-ai{animation:ca .5s steps(7,end) forwards;
   background:linear-gradient(45deg,#7c3aed,#06b6d4)}
+.c-nordic{animation:co .65s ease-in-out forwards;
+  background:linear-gradient(120deg,#2dd4bf,#818cf8 50%,#f472b6)}
 .c-space{animation:cw .55s ease-in-out forwards;
   background:radial-gradient(circle at 50% 50%,#38bdf8,#07090f 70%)}
 
+@keyframes co{
+  0%  {opacity:0;transform:translateX(-100%)}
+  35% {opacity:1;transform:translateX(0)}
+  65% {opacity:1;transform:translateX(0)}
+  100%{opacity:0;transform:translateX(100%)}
+}
 @keyframes cs{
   0%  {opacity:0;clip-path:polygon(50% 0,52% 0,52% 100%,50% 100%)}
   30% {opacity:1;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
@@ -261,7 +301,7 @@ footer a:hover{color:var(--a1)}
     </nav>
     <div class="nav-btns">
       <a href="https://github.com/vicarana" target="_blank" rel="noopener">GitHub</a>
-      <button class="btn-sm" id="themeBtn" aria-label="Change theme" title="Change theme">Space</button>
+      <button class="btn-sm" id="themeBtn" aria-label="Change theme" title="Change theme">Nordic</button>
       <button class="btn-sm" id="langBtn"  aria-label="Switch language">ES</button>
     </div>
   </div>
@@ -513,9 +553,9 @@ langBtn.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
 setLang('en');
 
 /* ── Theme + cinematic curtain ── */
-const themes   = ['space','samurai','ai'];
-const labels   = ['Space','Samurai','AI'];
-const curtains = ['c-space','c-samurai','c-ai'];
+const themes   = ['nordic','space','samurai','ai'];
+const labels   = ['Nordic','Space','Samurai','AI'];
+const curtains = ['c-nordic','c-space','c-samurai','c-ai'];
 const themeBtn = document.getElementById('themeBtn');
 const curtain  = document.getElementById('curtain');
 let ti = 0, animating = false;
